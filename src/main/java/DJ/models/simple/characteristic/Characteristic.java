@@ -3,16 +3,12 @@ package DJ.models.simple.characteristic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
 @Data
 @Accessors(chain = true)
-@Entity
+@Embeddable
 public class Characteristic {
-
-    @Id
-    private Long id;
 
     private String characteristic;
 

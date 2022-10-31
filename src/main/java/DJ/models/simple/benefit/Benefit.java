@@ -3,16 +3,12 @@ package DJ.models.simple.benefit;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
 @Data
 @Accessors(chain = true)
-@Entity
+@Embeddable
 public class Benefit {
-
-    @Id
-    private Long id;
 
     private String name;
 }
