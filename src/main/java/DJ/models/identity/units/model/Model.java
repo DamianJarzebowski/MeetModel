@@ -17,6 +17,7 @@ import java.util.Set;
 public class Model extends User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int age;

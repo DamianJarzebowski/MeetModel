@@ -11,5 +11,4 @@ import javax.persistence.Embeddable;
 public class Characteristic {
 
     private String characteristic;
-
 }
