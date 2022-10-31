@@ -1,0 +1,21 @@
+spring:
+
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: mysecretpassword
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-dtop
+
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+          type: TRACE
