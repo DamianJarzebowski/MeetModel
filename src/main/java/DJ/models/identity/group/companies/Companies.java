@@ -20,7 +20,7 @@ public class Companies {
 
     private String description;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection
     @CollectionTable(name = "companies_projects", joinColumns = @JoinColumn(name = "companies_id"))
     @Column(name = "projects")
     private Set<Project> projects = new HashSet<>();
