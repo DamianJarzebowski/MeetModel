@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Accessors(chain = true)
-@Embeddable
+@Entity
 public class Project {
 
     @Id
