@@ -1,11 +1,14 @@
-package DJ.models;
+package DJ.models.identity.group.companies;
 
-import lombok.Data;
+import DJ.models.identity.group.project.Project;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@Accessors(chain = true)
 @Entity
 public class Companies {
 
