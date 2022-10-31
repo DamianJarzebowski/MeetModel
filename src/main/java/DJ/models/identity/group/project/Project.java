@@ -6,13 +6,19 @@ import DJ.models.simple.skill.Skill;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Accessors(chain = true)
 @Embeddable
 public class Project {
+
+    @Id
+    private Long id;
 
     private Long name;
 
@@ -20,11 +26,21 @@ public class Project {
 
     private int remuneration;
 
-    private List<Benefit> benefits;
+    @ElementCollection
+    @CollectionTable(name = "benefits_project", joinColumns = @JoinColumn(name = "project_id"))
+    @Column(name = "benefits")
+    private Set<Benefit> benefits = new HashSet<>();
 
-    private List<Skill> skills;
+    @ElementCollection
+    @CollectionTable(name = "skills_project", joinColumns = @JoinColumn(name = "project_id"))
+    @Column(name = "skills")
+    private Set<Skill> skills = new HashSet<>();
 
-    private List<Characteristic> characteristics;
+    @ElementCollection
+    @CollectionTable(name = "characteristics_project", joinColumns = @JoinColumn(name = "project_id"))
+    @Column(name = "characteristics")
+    private Set<Characteristic> characteristics = new HashSet<>() {
+    };
 
 
 }

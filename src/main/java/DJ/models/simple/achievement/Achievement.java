@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Data
 @Accessors(chain = true)

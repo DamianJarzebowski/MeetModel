@@ -5,7 +5,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Accessors(chain = true)
@@ -21,5 +22,6 @@ public class Companies {
 
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "companies_projects", joinColumns = @JoinColumn(name = "companies_id"))
-    private List<Project> project;
+    @Column(name = "projects")
+    private Set<Project> projects = new HashSet<>();
 }
