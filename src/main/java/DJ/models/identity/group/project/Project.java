@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -39,8 +37,5 @@ public class Project {
     @ElementCollection
     @CollectionTable(name = "characteristics_project", joinColumns = @JoinColumn(name = "project_id"))
     @Column(name = "characteristics")
-    private Set<Characteristic> characteristics = new HashSet<>() {
-    };
-
-
+    private Set<Characteristic> characteristics = new HashSet<>();
 }
