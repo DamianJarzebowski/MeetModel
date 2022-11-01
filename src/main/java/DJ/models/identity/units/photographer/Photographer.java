@@ -19,13 +19,14 @@ public class Photographer extends User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
-    @CollectionTable(name = "achievements_photographer", joinColumns = @JoinColumn(name = "photographer_id"))
-    @Column(name = "achievements")
-    private Set<Achievement> achievements = new HashSet<>();
+    @Version
+    private Long version;
 
     @ElementCollection
-    @CollectionTable(name = "skills_photographer", joinColumns = @JoinColumn(name = "photographer_id"))
-    @Column(name = "skills")
-    private Set<Skill> skills = new HashSet<>();
+    @CollectionTable(name = "achievements", joinColumns = @JoinColumn(name = "photographer_id"))
+    private Set<String> achievements = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "photographer_id"))
+    private Set<String> skills = new HashSet<>();
 }

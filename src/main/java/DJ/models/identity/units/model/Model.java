@@ -1,9 +1,6 @@
 package DJ.models.identity.units.model;
 
 import DJ.models.identity.units.User;
-import DJ.models.simple.achievement.Achievement;
-import DJ.models.simple.characteristic.Characteristic;
-import DJ.models.simple.skill.Skill;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -20,20 +17,20 @@ public class Model extends User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Long version;
+
     private int age;
 
     @ElementCollection
-    @CollectionTable(name = "characteristics_model", joinColumns = @JoinColumn(name = "model_id"))
-    @Column(name = "characteristics")
-    private Set<Characteristic> characteristics = new HashSet<>();
+    @CollectionTable(name = "characteristics", joinColumns = @JoinColumn(name = "model_id"))
+    private Set<String> characteristics = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "achievements_model", joinColumns = @JoinColumn(name = "model_id"))
-    @Column(name = "achievements")
-    private Set<Achievement> achievements = new HashSet<>();
+    @CollectionTable(name = "achievements", joinColumns = @JoinColumn(name = "model_id"))
+    private Set<String> achievements = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "skills_model", joinColumns = @JoinColumn(name = "model_id"))
-    @Column(name = "skills")
-    private Set<Skill> skills = new HashSet<>();
+    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "model_id"))
+    private Set<String> skills = new HashSet<>();
 }

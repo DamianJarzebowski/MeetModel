@@ -19,6 +19,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Long version;
+
     private Long name;
 
     private String description;
@@ -26,17 +29,14 @@ public class Project {
     private int remuneration;
 
     @ElementCollection
-    @CollectionTable(name = "benefits_project", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name = "benefits")
-    private Set<Benefit> benefits = new HashSet<>();
+    @CollectionTable(name = "benefits", joinColumns = @JoinColumn(name = "project_id"))
+    private Set<String> benefits = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "skills_project", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name = "skills")
-    private Set<Skill> skills = new HashSet<>();
+    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "project_id"))
+    private Set<String> skills = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "characteristics_project", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name = "characteristics")
-    private Set<Characteristic> characteristics = new HashSet<>();
+    @CollectionTable(name = "characteristics", joinColumns = @JoinColumn(name = "project_id"))
+    private Set<String> characteristics = new HashSet<>();
 }

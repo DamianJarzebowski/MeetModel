@@ -17,6 +17,9 @@ public class Companies {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    private Long version;
+
     private String name;
 
     private String description;
