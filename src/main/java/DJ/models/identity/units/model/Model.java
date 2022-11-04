@@ -23,14 +23,14 @@ public class Model extends User {
     private int age;
 
     @ElementCollection
-    @CollectionTable(name = "characteristics", joinColumns = @JoinColumn(name = "model_id"))
+    @CollectionTable(name = "MODEL_CHARACTERISTICS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> characteristics = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "achievements", joinColumns = @JoinColumn(name = "model_id"))
+    @CollectionTable(name = "MODEL_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> achievements = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "model_id"))
+    @CollectionTable(name = "MODEL_SKILLS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> skills = new HashSet<>();
 }

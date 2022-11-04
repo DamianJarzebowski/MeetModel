@@ -1,8 +1,6 @@
 package DJ.models.identity.units.photographer;
 
 import DJ.models.identity.units.User;
-import DJ.models.simple.achievement.Achievement;
-import DJ.models.simple.skill.Skill;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -23,10 +21,10 @@ public class Photographer extends User {
     private Long version;
 
     @ElementCollection
-    @CollectionTable(name = "achievements", joinColumns = @JoinColumn(name = "photographer_id"))
+    @CollectionTable(name = "PHOTOGRAPHER_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "photographer_id"))
     private Set<String> achievements = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "photographer_id"))
+    @CollectionTable(name = "PHOTOGRAPHER_SKILLS", joinColumns = @JoinColumn(name = "photographer_id"))
     private Set<String> skills = new HashSet<>();
 }

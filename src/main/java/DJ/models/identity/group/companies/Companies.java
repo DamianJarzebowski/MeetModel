@@ -24,8 +24,6 @@ public class Companies {
 
     private String description;
 
-    @ElementCollection
-    @CollectionTable(name = "companies_projects", joinColumns = @JoinColumn(name = "companies_id"))
-    @Column(name = "projects")
+    @OneToMany(mappedBy = "companies")
     private Set<Project> projects = new HashSet<>();
 }
