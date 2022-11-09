@@ -3,6 +3,7 @@ package DJ.models.identity.competition.model;
 import DJ.exception.ErrorMessage;
 import DJ.exception.notFound.NotFoundException;
 import DJ.models.identity.competition.User;
+import DJ.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import DJ.models.identity.competition.model.dto.ModelReadDto;
 import DJ.models.identity.competition.model.dto.ModelWriteDto;
 import DJ.models.identity.competition.model.mappers.ModelReadMapper;
@@ -40,7 +41,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Transactional
     @Override
-    public ModelReadDto updatePersonalInformation(long id, ModelWriteDto dto) {
+    public ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto) {
         var actual = modelRepository.findById(id).orElseThrow(() -> {
             log.error(String.format("Model id: %d does not exists", id));
             return new NotFoundException(ErrorMessage.NOT_FOUND);

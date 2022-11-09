@@ -11,14 +11,20 @@ public class ModelReadMapper {
         return new ModelReadDto()
                 .setId(model.getId())
                 .setAge(model.getAge())
-                .setUser(model.getUser());
+                .setUser(model.getUser())
+                .setSkills(model.getSkills())
+                .setAchievements(model.getAchievements())
+                .setCharacteristics(model.getCharacteristics());
     }
 
     public Model toEntity(ModelReadDto dto) {
         return new Model()
                 .setId(dto.getId())
                 .setAge(dto.getAge())
-                .setUser(dto.getUser());
+                .setUser(dto.getUser())
+                .setSkills(dto.getSkills())
+                .setAchievements(dto.getAchievements())
+                .setCharacteristics(dto.getCharacteristics());
     }
 
 }

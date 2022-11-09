@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import java.net.URI;
+import java.util.HashSet;
+import java.util.Set;
 
 import static DJ.CRUD_Test.*;
 
@@ -42,7 +44,16 @@ class ModelControllerTest {
 
         var modelWriteDto = new ModelWriteDto()
                 .setUser(user)
-                .setAge(18);
+                .setAge(18)
+                .setSkills(new HashSet<>(
+                        Set.of("Skill1", "Skill2")
+                ))
+                .setAchievements(new HashSet<>(
+                        Set.of("Achievement1", "Achievement2")
+                ))
+                .setCharacteristics(new HashSet<>(
+                        Set.of("Characteristics1", "Characteristics2")
+                ));
 
         var modelLocation = create(baseUri, modelWriteDto);
 
@@ -51,7 +62,16 @@ class ModelControllerTest {
         var expected = new ModelReadDto()
                 .setId(actual.getId())
                 .setUser(user)
-                .setAge(18);
+                .setAge(18)
+                .setSkills(new HashSet<>(
+                        Set.of("Skill1", "Skill2")
+                ))
+                .setAchievements(new HashSet<>(
+                        Set.of("Achievement1", "Achievement2")
+                ))
+                .setCharacteristics(new HashSet<>(
+                        Set.of("Characteristics1", "Characteristics2")
+                ));;
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
