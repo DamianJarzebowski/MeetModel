@@ -85,7 +85,7 @@ class ModelControllerTest {
                         .setEmail("newEmail@gmail.com")
                 );
 
-        var updated = update(modelLocation, ModelReadDto.class, dateToUpdate);
+        var updated = update(modelLocation + "/general", ModelReadDto.class, dateToUpdate);
 
         var expected = updated
                 .setUser(dateToUpdate.getUser())

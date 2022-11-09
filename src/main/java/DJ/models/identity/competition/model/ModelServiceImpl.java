@@ -38,7 +38,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public ModelReadDto findById(long id) {
-        log.info(String.format("Looking model id: %d", id));
+        log.info("Looking model id: {}", id);
         return modelRepository.findById(id).map(modelReadMapper::toDto).orElseThrow(() -> {
             log.error(String.format("Model id: %d does not exists", id));
             return new NotFoundException(ErrorMessage.NOT_FOUND);

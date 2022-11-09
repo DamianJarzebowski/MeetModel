@@ -49,7 +49,7 @@ public class ModelController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/general")
     ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
         ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
         return ResponseEntity.ok(updatedModel);
