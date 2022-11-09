@@ -10,5 +10,5 @@ public class ModelPersonalInformationDto {
 
     private User user;
 
-    private int age;
+    private Integer age;
 }
