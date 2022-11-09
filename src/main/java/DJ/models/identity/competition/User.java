@@ -1,14 +1,15 @@
-package DJ.models.identity.units;
+package DJ.models.identity.competition;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Embeddable;
 import javax.persistence.MappedSuperclass;
 
 @Data
 @Accessors(chain = true)
-@MappedSuperclass
-public abstract class User {
+@Embeddable
+public class User {
 
     private String name;
 

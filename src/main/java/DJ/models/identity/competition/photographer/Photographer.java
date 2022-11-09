@@ -1,6 +1,6 @@
-package DJ.models.identity.units.photographer;
+package DJ.models.identity.competition.photographer;
 
-import DJ.models.identity.units.User;
+import DJ.models.identity.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,11 +11,14 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 @Entity
-public class Photographer extends User {
+public class Photographer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Embedded
+    private User user;
 
     @Version
     private Long version;

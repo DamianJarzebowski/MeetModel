@@ -1,6 +1,6 @@
-package DJ.models.identity.units.model;
+package DJ.models.identity.competition.model;
 
-import DJ.models.identity.units.User;
+import DJ.models.identity.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,16 +11,19 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 @Entity
-public class Model extends User {
+public class Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Version
-    private Long version;
+    @Embedded
+    private User user;
 
     private int age;
+
+    @Version
+    private Long version;
 
     @ElementCollection
     @CollectionTable(name = "MODEL_CHARACTERISTICS", joinColumns = @JoinColumn(name = "model_id"))

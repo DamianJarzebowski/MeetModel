@@ -1,6 +1,6 @@
-package DJ.models.identity.group.companies;
+package DJ.models.identity.companies;
 
-import DJ.models.identity.group.project.Project;
+import DJ.models.identity.project.Project;
 import lombok.*;
 import lombok.experimental.Accessors;
 
