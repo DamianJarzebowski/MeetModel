@@ -66,7 +66,7 @@ class ModelControllerTest {
                 .setAge(dateToCreateModel().getAge())
                 .setSkills(dateToCreateModel().getSkills())
                 .setAchievements(dateToCreateModel().getAchievements())
-                .setCharacteristics(dateToCreateModel().getAchievements());
+                .setCharacteristics(dateToCreateModel().getCharacteristics());
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
@@ -92,6 +92,37 @@ class ModelControllerTest {
                 .setAge(dateToUpdate.getAge());
 
         Assertions.assertThat(updated).isEqualTo(expected);
+    }
+
+    @Test
+    void shouldCreateAndUpdateListSkillAchievementsCharacteristics() {
+
+        var modelLocation = create(baseUri, dateToCreateModel());
+
+        var skillToUpdate = new HashSet<>(Set.of("NewSkill1", "NewSkill2"));
+        var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
+        var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
+
+        update(modelLocation + "/skills", ModelReadDto.class, skillToUpdate);
+        update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate);
+        update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate);
+
+        var actual = read(modelLocation, ModelReadDto.class);
+
+        var expected = actual
+                .setSkills(new HashSet<>(Set.of("NewSkill1", "NewSkill2")))
+                .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")))
+                .setCharacteristics(new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2")));
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void shouldCreateAndDeleteModel() {
+
+        var modelLocation = create(baseUri, dateToCreateModel());
+
+        delete(modelLocation);
     }
 
 }

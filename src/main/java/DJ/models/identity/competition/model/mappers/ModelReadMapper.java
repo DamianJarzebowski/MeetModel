@@ -4,6 +4,9 @@ import DJ.models.identity.competition.model.Model;
 import DJ.models.identity.competition.model.dto.ModelReadDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ModelReadMapper {
 
@@ -25,6 +28,13 @@ public class ModelReadMapper {
                 .setSkills(dto.getSkills())
                 .setAchievements(dto.getAchievements())
                 .setCharacteristics(dto.getCharacteristics());
+    }
+
+    public List<ModelReadDto> toDto(List<Model> models) {
+        return models
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
 }
