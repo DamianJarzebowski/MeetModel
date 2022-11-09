@@ -1,11 +1,9 @@
 package DJ;
 
 import DJ.models.identity.competition.User;
+import DJ.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import DJ.models.identity.competition.model.dto.ModelReadDto;
 import DJ.models.identity.competition.model.dto.ModelWriteDto;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,8 +31,7 @@ class ModelControllerTest {
         baseUri = URI.create(testRestTemplate.getRootUri()) + BASE_URL;
     }
 
-    @Test
-    void shouldCreateAndGetModel() {
+    private ModelWriteDto dateToCreateModel() {
 
         User user = new User()
                 .setName("Ala")
@@ -42,7 +39,7 @@ class ModelControllerTest {
                 .setDescription("abcd")
                 .setEmail("email@gmail.com");
 
-        var modelWriteDto = new ModelWriteDto()
+        return new ModelWriteDto()
                 .setUser(user)
                 .setAge(18)
                 .setSkills(new HashSet<>(
@@ -54,26 +51,47 @@ class ModelControllerTest {
                 .setCharacteristics(new HashSet<>(
                         Set.of("Characteristics1", "Characteristics2")
                 ));
+    }
 
-        var modelLocation = create(baseUri, modelWriteDto);
+    @Test
+    void shouldCreateAndGetModel() {
+
+        var modelLocation = create(baseUri, dateToCreateModel());
 
         var actual = read(modelLocation, ModelReadDto.class);
 
         var expected = new ModelReadDto()
                 .setId(actual.getId())
-                .setUser(user)
-                .setAge(18)
-                .setSkills(new HashSet<>(
-                        Set.of("Skill1", "Skill2")
-                ))
-                .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")
-                ))
-                .setCharacteristics(new HashSet<>(
-                        Set.of("Characteristics1", "Characteristics2")
-                ));;
+                .setUser(dateToCreateModel().getUser())
+                .setAge(dateToCreateModel().getAge())
+                .setSkills(dateToCreateModel().getSkills())
+                .setAchievements(dateToCreateModel().getAchievements())
+                .setCharacteristics(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void shouldCreateAndUpdatePersonalInformation() {
+
+        var modelLocation = create(baseUri, dateToCreateModel());
+
+        var dateToUpdate = new ModelPersonalInformationDto()
+                .setAge(20)
+                .setUser(new User()
+                        .setName("Paulina")
+                        .setLastName("Nowak")
+                        .setDescription("qwer")
+                        .setEmail("newEmail@gmail.com")
+                );
+
+        var updated = update(modelLocation, ModelReadDto.class, dateToUpdate);
+
+        var expected = updated
+                .setUser(dateToUpdate.getUser())
+                .setAge(dateToUpdate.getAge());
+
+        Assertions.assertThat(updated).isEqualTo(expected);
     }
 
 }

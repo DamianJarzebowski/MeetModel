@@ -2,6 +2,7 @@ package DJ.api;
 
 import DJ.exception.notFound.NotFoundException;
 import DJ.models.identity.competition.model.ModelService;
+import DJ.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import DJ.models.identity.competition.model.dto.ModelReadDto;
 import DJ.models.identity.competition.model.dto.ModelWriteDto;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,12 @@ public class ModelController {
                 .buildAndExpand(savedModel.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
+        ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
+        return ResponseEntity.ok(updatedModel);
     }
 
 
