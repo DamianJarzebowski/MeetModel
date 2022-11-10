@@ -22,9 +22,7 @@ public class ModelController {
 
     @GetMapping("/{id}")
     ResponseEntity<ModelReadDto> findById(@PathVariable long id) {
-
             return ResponseEntity.ok(modelService.findById(id));
-
     }
 
     @GetMapping

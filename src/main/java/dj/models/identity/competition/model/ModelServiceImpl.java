@@ -80,19 +80,19 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateCharacteristic(long id, Set<String> characteristics) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual.setCharacteristics(characteristics);
-        log.info("Model about id {} updated", id);
         return modelReadMapper.toDto(actual);
     }
 
     @Override
     public void delete(long id) {
-        modelRepository.deleteById(id);
+        var actual = findModelInDataBaseOrThrowNotFoundException(id);
+        modelRepository.delete(actual);
         log.info("Model id: {} deleted", id);
     }
 
     private Model findModelInDataBaseOrThrowNotFoundException(long id) {
         return modelRepository.findById(id).orElseThrow(() -> {
-            //log.error("Model id: {} does not exists", id);
+            log.error("Model id: {} does not exists", id);
             return new NotFoundException(ErrorMessage.NOT_FOUND);
         });
     }

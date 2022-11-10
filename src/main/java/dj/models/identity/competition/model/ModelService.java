@@ -9,24 +9,41 @@ import java.util.Set;
 
 public interface ModelService {
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     ModelReadDto findById(long id);
 
     /**
-     * @throws dj.exception.notFound.NotFoundException
-     * @return
+     * @return list ModelReadDto or empty collection
      */
     List<ModelReadDto> findAll();
 
     ModelReadDto create(ModelWriteDto dto);
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto);
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     ModelReadDto updateSkills(long id, Set<String> skills);
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     ModelReadDto updateAchievements(long id, Set<String> achievements);
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     ModelReadDto updateCharacteristic(long id, Set<String> characteristics);
 
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
     void delete(long id);
 
 }
