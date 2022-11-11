@@ -4,6 +4,7 @@ import dj.models.identity.competition.model.ModelService;
 import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
 import dj.models.identity.competition.model.dto.ModelWriteDto;
+import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,7 +67,7 @@ public class ModelController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteModel(@PathVariable long id) {
+    ResponseEntity<Response> deleteModel(@PathVariable long id) {
         modelService.delete(id);
         return ResponseEntity.noContent().build();
     }

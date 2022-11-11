@@ -1,21 +1,27 @@
 package dj;
 
+import dj.exception.notFound.NotFoundException;
 import dj.models.identity.competition.User;
+import dj.models.identity.competition.model.ModelService;
 import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
 import dj.models.identity.competition.model.dto.ModelWriteDto;
+import io.restassured.RestAssured;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
 import static dj.CRUD_Test.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ModelControllerTest {
@@ -25,6 +31,9 @@ class ModelControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
+
+    @Autowired
+    private ModelService modelService;
 
     @BeforeEach
     void beforeEach() {
@@ -49,10 +58,13 @@ class ModelControllerTest {
     }
 
     @Test
-    void shouldThrowNotFoundExceptionAndReturnStatus404() {
-
-        read(baseUri + "/0", ModelReadDto.class);
-
+    void shouldThrowNotFoundException() {
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> {
+            modelService.findById(-1L);
+        });
+        String expectedMessage = "Resource does not exist";
+        String actualMessage = exception.getErrorMessage().getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

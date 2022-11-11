@@ -5,7 +5,8 @@ import dj.exception.ErrorMessage;
 
 public class NotFoundException extends RuntimeException {
 
-    private ErrorMessage errorMessage;
+
+    private final ErrorMessage errorMessage;
 
     public NotFoundException(ErrorMessage errorMessage) {
         this.errorMessage = errorMessage;
