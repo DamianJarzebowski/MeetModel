@@ -57,6 +57,7 @@ class ModelControllerTest {
                         Set.of("Characteristics1", "Characteristics2")));
     }
 
+    // For looking -1L always will be return exception bcs id will be never under 1
     @Test
     void shouldThrowNotFoundException() {
         NotFoundException exception = assertThrows(NotFoundException.class, () -> {
