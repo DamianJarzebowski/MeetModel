@@ -96,5 +96,4 @@ public class ModelServiceImpl implements ModelService {
             return new NotFoundException(ErrorMessage.NOT_FOUND);
         });
     }
-
 }
