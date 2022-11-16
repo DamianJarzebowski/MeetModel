@@ -7,6 +7,7 @@ import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
 import dj.models.identity.competition.model.dto.ModelWriteDto;
 import io.restassured.RestAssured;
+import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,9 +72,9 @@ class ModelControllerTest {
     @Test
     void shouldCreateAndGetModel() {
 
-        var modelLocation = create(baseUri, dateToCreateModel());
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
-        var actual = read(modelLocation, ModelReadDto.class);
+        var actual = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         var expected = new ModelReadDto()
                 .setId(actual.getId())
@@ -89,7 +90,7 @@ class ModelControllerTest {
     @Test
     void shouldCreateAndUpdatePersonalInformation() {
 
-        var modelLocation = create(baseUri, dateToCreateModel());
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
         var dateToUpdate = new ModelPersonalInformationDto()
                 .setAge(20)
@@ -100,7 +101,7 @@ class ModelControllerTest {
                         .setEmail("newEmail@gmail.com")
                 );
 
-        var updated = update(modelLocation + "/general", ModelReadDto.class, dateToUpdate);
+        var updated = update(modelLocation + "/general", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
 
         var expected = updated
                 .setUser(dateToUpdate.getUser())
@@ -112,17 +113,17 @@ class ModelControllerTest {
     @Test
     void shouldCreateAndUpdateListSkillAchievementsCharacteristics() {
 
-        var modelLocation = create(baseUri, dateToCreateModel());
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
         var skillToUpdate = new HashSet<>(Set.of("NewSkill1", "NewSkill2"));
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
         var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
 
-        update(modelLocation + "/skills", ModelReadDto.class, skillToUpdate);
-        update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate);
-        update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate);
+        update(modelLocation + "/skills", ModelReadDto.class, skillToUpdate, HttpStatus.SC_OK);
+        update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
+        update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate, HttpStatus.SC_OK);
 
-        var actual = read(modelLocation, ModelReadDto.class);
+        var actual = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         var expected = actual
                 .setSkills(new HashSet<>(Set.of("NewSkill1", "NewSkill2")))
@@ -134,8 +135,8 @@ class ModelControllerTest {
 
     @Test
     void shouldCreateAndDeleteModel() {
-        var modelLocation = create(baseUri, dateToCreateModel());
-        delete(modelLocation);
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
+        delete(modelLocation, HttpStatus.SC_NO_CONTENT);
     }
 
 }

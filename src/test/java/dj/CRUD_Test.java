@@ -2,11 +2,10 @@ package dj;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.apache.http.HttpStatus;
 
 public class CRUD_Test {
 
-    public static String create(String uri, Object objectToCreate) {
+    public static String create(String uri, Object objectToCreate, int statusCode) {
         return RestAssured
                 .with()
                 .contentType(ContentType.JSON)
@@ -14,23 +13,23 @@ public class CRUD_Test {
                 .when()
                 .post(uri)
                 .then()
-                .statusCode(HttpStatus.SC_CREATED)
+                .statusCode(statusCode)
                 .extract()
                 .header("location");
     }
 
-    public static <T> T read(String location, Class<T> clazz) {
+    public static <T> T read(String location, Class<T> clazz, int statusCode) {
         return RestAssured
                 .given()
                 .headers("Content-Type", ContentType.JSON)
                 .get(location)
                 .then()
-                .statusCode(HttpStatus.SC_OK)
+                .statusCode(statusCode)
                 .extract()
                 .as(clazz);
     }
 
-    public static <T> T update(String location, Class<T> clazz, Object objectToUpdate) {
+    public static <T> T update(String location, Class<T> clazz, Object objectToUpdate, int statusCode) {
         return RestAssured
                 .given()
                 .contentType(ContentType.JSON)
@@ -38,17 +37,17 @@ public class CRUD_Test {
                 .when()
                 .put(location)
                 .then()
-                .statusCode(HttpStatus.SC_OK)
+                .statusCode(statusCode)
                 .extract()
                 .as(clazz);
     }
 
-    public static void delete(String location) {
+    public static void delete(String location, int statusCode) {
         RestAssured
                 .when()
                 .delete(location)
                 .then()
-                .statusCode(HttpStatus.SC_NO_CONTENT);
+                .statusCode(statusCode);
     }
 
 }
