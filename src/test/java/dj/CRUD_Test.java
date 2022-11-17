@@ -3,7 +3,9 @@ package dj;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class CRUD_Test {
+public final class CRUD_Test {
+
+    // Class to shorten the sugar code in rest assured
 
     public static String create(String uri, Object objectToCreate, int statusCode) {
         return RestAssured

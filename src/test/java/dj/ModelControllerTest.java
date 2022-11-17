@@ -71,9 +71,7 @@ class ModelControllerTest {
 
     @Test
     void shouldCreateAndGetModel() {
-
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
-
         var actual = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         var expected = new ModelReadDto()

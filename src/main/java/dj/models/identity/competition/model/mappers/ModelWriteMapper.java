@@ -14,6 +14,5 @@ public class ModelWriteMapper {
                 .setSkills(dto.getSkills())
                 .setAchievements(dto.getAchievements())
                 .setCharacteristics(dto.getCharacteristics());
-
     }
 }
