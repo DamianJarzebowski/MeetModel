@@ -1,8 +1,8 @@
 package dj.models.identity.competition.photographer;
 
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
+import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
+import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
 
 import java.util.List;
 import java.util.Set;
@@ -19,12 +19,12 @@ public interface PhotographerService {
      */
     List<PhotographerReadDto> findAll();
 
-    PhotographerReadDto create(ModelWriteDto dto);
+    PhotographerReadDto create(PhotographerWriteDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    PhotographerReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto);
+    PhotographerReadDto updatePersonalInformation(long id, PhotographerPersonalInfoDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

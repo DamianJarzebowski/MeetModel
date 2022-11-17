@@ -4,7 +4,9 @@ import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
 import dj.models.identity.competition.model.dto.ModelWriteDto;
 import dj.models.identity.competition.photographer.PhotographerServiceImpl;
+import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
+import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
 import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class PhotographerController {
     }
 
     @PostMapping("")
-    ResponseEntity<ModelReadDto> saveModel(@RequestBody ModelWriteDto dto) {
+    ResponseEntity<ModelReadDto> saveModel(@RequestBody PhotographerWriteDto dto) {
         PhotographerReadDto savedPhotographer = photographerService.create(dto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -44,7 +46,7 @@ public class PhotographerController {
     }
 
     @PutMapping("/{id}/general")
-    ResponseEntity<PhotographerReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
+    ResponseEntity<PhotographerReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody PhotographerPersonalInfoDto dto) {
         PhotographerReadDto updatedModel = photographerService.updatePersonalInformation(id, dto);
         return ResponseEntity.ok(updatedModel);
     }
