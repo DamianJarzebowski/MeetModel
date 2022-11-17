@@ -62,7 +62,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateSkills(long id, Set<String> skills) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual.setSkills(skills);
-        log.info("Model about id {} updated", id);
+        log.info("Model about id {} updated skills", id);
         return modelReadMapper.toDto(actual);
     }
 
@@ -71,7 +71,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateAchievements(long id, Set<String> achievements) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual.setAchievements(achievements);
-        log.info("Model about id {} updated", id);
+        log.info("Model about id {} updated achievements", id);
         return modelReadMapper.toDto(actual);
     }
 
@@ -80,6 +80,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateCharacteristic(long id, Set<String> characteristics) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual.setCharacteristics(characteristics);
+        log.info("Model about id {} updated characteristics", id);
         return modelReadMapper.toDto(actual);
     }
 
