@@ -1,8 +1,6 @@
 package dj.api;
 
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
 import dj.models.identity.competition.photographer.PhotographerServiceImpl;
 import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.identity.competition.photographer.dto.PhotographerReadDto;

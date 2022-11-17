@@ -1,4 +1,4 @@
-package dj;
+package dj.other;
 
 import dj.exception.notFound.NotFoundException;
 import dj.models.identity.competition.User;
@@ -18,7 +18,7 @@ import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
-import static dj.CRUD_Test.*;
+import static dj.other.CRUD_Test.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

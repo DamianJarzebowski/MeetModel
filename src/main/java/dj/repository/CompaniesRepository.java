@@ -1,6 +1,6 @@
 package dj.repository;
 
-import dj.models.identity.companies.Companies;
+import dj.models.identity.other.Companies;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

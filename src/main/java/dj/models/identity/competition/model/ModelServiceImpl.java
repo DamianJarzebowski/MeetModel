@@ -1,8 +1,8 @@
 package dj.models.identity.competition.model;
 
+import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.identity.competition.model.dto.ModelReadDto;
 import dj.models.identity.competition.model.dto.ModelWriteDto;
 import dj.models.identity.competition.model.mappers.ModelReadMapper;

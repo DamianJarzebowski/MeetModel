@@ -1,15 +1,12 @@
 package dj.models.identity.competition.photographer;
 
-import dj.exception.ErrorMessage;
-import dj.exception.notFound.NotFoundException;
-import dj.models.identity.competition.model.Model;
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
 import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
 import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
 import dj.models.identity.competition.photographer.mappers.PhotographerReadMapper;
 import dj.models.identity.competition.photographer.mappers.PhotographerWriteMapper;
+import dj.exception.ErrorMessage;
+import dj.exception.notFound.NotFoundException;
 import dj.repository.PhotographerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
