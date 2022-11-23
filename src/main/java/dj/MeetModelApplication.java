@@ -19,7 +19,6 @@ public class MeetModelApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MeetModelApplication.class, args);
-
 	}
 
 		@Bean
@@ -27,7 +26,7 @@ public class MeetModelApplication {
 			return new Docket(DocumentationType.SWAGGER_2)
 					.select()
 					.paths(PathSelectors.ant("/api/**")) // Provides endpoints that meet the condition
-					.apis((RequestHandlerSelectors.basePackage("dj"))) // Looking and share endpoints in folder "dj.eventregister"
+					.apis((RequestHandlerSelectors.basePackage("dj"))) // Looking and share endpoints in folder "dj"
 					.build()
 					.apiInfo(createApiInfo());
 		}
