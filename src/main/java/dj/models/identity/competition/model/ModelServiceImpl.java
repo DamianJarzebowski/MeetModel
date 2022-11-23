@@ -51,18 +51,8 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual
-                .setAge(dto.getAge())
                 .setUser(dto.getUser());
         log.info("Model about id {} updated", id);
-        return modelReadMapper.toDto(actual);
-    }
-
-    @Transactional
-    @Override
-    public ModelReadDto updateSkills(long id, Set<String> skills) {
-        var actual = findModelInDataBaseOrThrowNotFoundException(id);
-        actual.setSkills(skills);
-        log.info("Model about id {} updated skills", id);
         return modelReadMapper.toDto(actual);
     }
 

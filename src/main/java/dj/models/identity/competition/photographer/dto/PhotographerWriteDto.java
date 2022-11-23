@@ -14,6 +14,4 @@ public class PhotographerWriteDto {
     private User user;
 
     private Set<String> achievements = new HashSet<>();
-
-    private Set<String> skills = new HashSet<>();
 }

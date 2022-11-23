@@ -17,8 +17,6 @@ public class ModelReadDto {
 
     private Integer age;
 
-    private Set<String> skills = new HashSet<>();
-
     private Set<String> achievements = new HashSet<>();
 
     private Set<String> characteristics = new HashSet<>();

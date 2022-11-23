@@ -20,8 +20,6 @@ public class Model {
     @Embedded
     private User user;
 
-    private Integer age;
-
     @Version
     private Long version;
 
@@ -33,7 +31,4 @@ public class Model {
     @CollectionTable(name = "MODEL_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> achievements = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "MODEL_SKILLS", joinColumns = @JoinColumn(name = "model_id"))
-    private Set<String> skills = new HashSet<>();
 }

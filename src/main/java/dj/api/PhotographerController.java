@@ -49,12 +49,6 @@ public class PhotographerController {
         return ResponseEntity.ok(updatedModel);
     }
 
-    @PutMapping("/{id}/skills")
-    ResponseEntity<PhotographerReadDto> updateSkills(@PathVariable long id, @RequestBody Set<String> skills) {
-        PhotographerReadDto updatedModel = photographerService.updateSkills(id, skills);
-        return ResponseEntity.ok(updatedModel);
-    }
-
     @PutMapping("/{id}/achievements")
     ResponseEntity<PhotographerReadDto> updateAchievements(@PathVariable long id, @RequestBody Set<String> achievements) {
         PhotographerReadDto updatedModel = photographerService.updateAchievements(id, achievements);

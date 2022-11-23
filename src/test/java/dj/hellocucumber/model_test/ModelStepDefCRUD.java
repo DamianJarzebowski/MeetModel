@@ -32,10 +32,8 @@ public class ModelStepDefCRUD {
                         .setName("Ala")
                         .setLastName("Nowak")
                         .setDescription("abcd")
+                        .setAge(18)
                         .setEmail("email@gmail.com"))
-                .setAge(18)
-                .setSkills(new HashSet<>(
-                        Set.of("Skill1", "Skill2")))
                 .setAchievements(new HashSet<>(
                         Set.of("Achievement1", "Achievement2")))
                 .setCharacteristics(new HashSet<>(
@@ -58,7 +56,6 @@ public class ModelStepDefCRUD {
                 .setId(actualReadModel.getId())
                 .setUser(dateToCreateModel().getUser())
                 .setAge(dateToCreateModel().getAge())
-                .setSkills(dateToCreateModel().getSkills())
                 .setAchievements(dateToCreateModel().getAchievements())
                 .setCharacteristics(dateToCreateModel().getCharacteristics());
 
@@ -68,11 +65,11 @@ public class ModelStepDefCRUD {
     @When("Update personal information.")
     public void update_personal_information() {
         ModelPersonalInformationDto generalDateToUpdate = new ModelPersonalInformationDto()
-                    .setAge(20)
                     .setUser(new User()
                             .setName("Paulina")
                             .setLastName("Nowak")
                             .setDescription("qwer")
+                            .setAge(19)
                             .setEmail("newEmail@gmail.com")
                     );
         update( modelLocation + "/general", ModelReadDto.class, generalDateToUpdate, HttpStatus.SC_OK);
@@ -86,6 +83,7 @@ public class ModelStepDefCRUD {
                         .setName("Paulina")
                         .setLastName("Nowak")
                         .setDescription("qwer")
+                        .setAge(19)
                         .setEmail("newEmail@gmail.com")
                 );
 
@@ -98,7 +96,6 @@ public class ModelStepDefCRUD {
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
         var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
 
-        update(modelLocation + "/skills", ModelReadDto.class, skillToUpdate, HttpStatus.SC_OK);
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
         update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate, HttpStatus.SC_OK);
     }
@@ -106,7 +103,6 @@ public class ModelStepDefCRUD {
     @Then("Check correct data change lists.")
     public void check_correct_data_change_lists() {
         var expected = actualReadModel
-                .setSkills(new HashSet<>(Set.of("NewSkill1", "NewSkill2")))
                 .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")))
                 .setCharacteristics(new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2")));
 

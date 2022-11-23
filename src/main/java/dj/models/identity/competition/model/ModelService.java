@@ -29,11 +29,6 @@ public interface ModelService {
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    ModelReadDto updateSkills(long id, Set<String> skills);
-
-    /**
-     * @throws dj.exception.notFound.NotFoundException
-     */
     ModelReadDto updateAchievements(long id, Set<String> achievements);
 
     /**

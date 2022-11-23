@@ -13,7 +13,6 @@ public class PhotographerReadMapper {
         return new PhotographerReadDto()
                 .setId(photographer.getId())
                 .setUser(photographer.getUser())
-                .setSkills(photographer.getSkills())
                 .setAchievements(photographer.getAchievements());
     }
 

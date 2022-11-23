@@ -10,7 +10,6 @@ public class PhotographerWriteMapper {
     public Photographer toEntity(PhotographerWriteDto dto) {
         return new Photographer()
                 .setUser(dto.getUser())
-                .setSkills(dto.getSkills())
                 .setAchievements(dto.getAchievements());
     }
 }

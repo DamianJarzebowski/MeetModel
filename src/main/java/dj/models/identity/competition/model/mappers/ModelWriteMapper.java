@@ -9,9 +9,7 @@ public class ModelWriteMapper {
 
     public Model toEntity(ModelWriteDto dto) {
         return new Model()
-                .setAge(dto.getAge())
                 .setUser(dto.getUser())
-                .setSkills(dto.getSkills())
                 .setAchievements(dto.getAchievements())
                 .setCharacteristics(dto.getCharacteristics());
     }

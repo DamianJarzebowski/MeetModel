@@ -48,8 +48,6 @@ class ModelControllerTest {
                         .setDescription("abcd")
                         .setEmail("email@gmail.com"))
                 .setAge(18)
-                .setSkills(new HashSet<>(
-                        Set.of("Skill1", "Skill2")))
                 .setAchievements(new HashSet<>(
                         Set.of("Achievement1", "Achievement2")))
                 .setCharacteristics(new HashSet<>(
@@ -76,7 +74,6 @@ class ModelControllerTest {
                 .setId(actual.getId())
                 .setUser(dateToCreateModel().getUser())
                 .setAge(dateToCreateModel().getAge())
-                .setSkills(dateToCreateModel().getSkills())
                 .setAchievements(dateToCreateModel().getAchievements())
                 .setCharacteristics(dateToCreateModel().getCharacteristics());
 
@@ -89,19 +86,18 @@ class ModelControllerTest {
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
         var dateToUpdate = new ModelPersonalInformationDto()
-                .setAge(20)
                 .setUser(new User()
                         .setName("Paulina")
                         .setLastName("Nowak")
                         .setDescription("qwer")
+                        .setAge(18)
                         .setEmail("newEmail@gmail.com")
                 );
 
         var updated = update(modelLocation + "/general", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
 
         var expected = updated
-                .setUser(dateToUpdate.getUser())
-                .setAge(dateToUpdate.getAge());
+                .setUser(dateToUpdate.getUser());
 
         Assertions.assertThat(updated).isEqualTo(expected);
     }
@@ -122,7 +118,6 @@ class ModelControllerTest {
         var actual = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         var expected = actual
-                .setSkills(new HashSet<>(Set.of("NewSkill1", "NewSkill2")))
                 .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")))
                 .setCharacteristics(new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2")));
 

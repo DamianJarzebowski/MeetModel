@@ -16,5 +16,7 @@ public class User {
 
     private String description;
 
+    private int age;
+
     private String email;
 }

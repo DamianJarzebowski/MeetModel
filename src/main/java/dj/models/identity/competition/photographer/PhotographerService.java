@@ -29,11 +29,6 @@ public interface PhotographerService {
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    PhotographerReadDto updateSkills(long id, Set<String> skills);
-
-    /**
-     * @throws dj.exception.notFound.NotFoundException
-     */
     PhotographerReadDto updateAchievements(long id, Set<String> achievements);
 
     /**

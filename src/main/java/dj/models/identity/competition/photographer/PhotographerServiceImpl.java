@@ -53,13 +53,6 @@ public class PhotographerServiceImpl implements PhotographerService {
         return photographerReadMapper.toDto(actual);    }
 
     @Override
-    public PhotographerReadDto updateSkills(long id, Set<String> skills) {
-        var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
-        actual.setSkills(skills);
-        log.info("Photographer about id {} updated skills", id);
-        return photographerReadMapper.toDto(actual);    }
-
-    @Override
     public PhotographerReadDto updateAchievements(long id, Set<String> achievements) {
         var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
         actual.setAchievements(achievements);
