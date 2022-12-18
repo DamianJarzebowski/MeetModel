@@ -48,12 +48,6 @@ public class ModelController {
         return ResponseEntity.ok(updatedModel);
     }
 
-    @PutMapping("/{id}/characteristics")
-    ResponseEntity<ModelReadDto> updateCharacteristics(@PathVariable long id, @RequestBody Set<String> characteristics) {
-        ModelReadDto updatedModel = modelService.updateCharacteristic(id, characteristics);
-        return ResponseEntity.ok(updatedModel);
-    }
-
     @PutMapping("/{id}/achievements")
     ResponseEntity<ModelReadDto> updateAchievements(@PathVariable long id, @RequestBody Set<String> achievements) {
         ModelReadDto updatedModel = modelService.updateAchievements(id, achievements);

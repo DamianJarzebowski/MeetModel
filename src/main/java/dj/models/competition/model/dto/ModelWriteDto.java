@@ -15,6 +15,4 @@ public class ModelWriteDto {
 
     private Set<String> achievements = new HashSet<>();
 
-    private Set<String> characteristics = new HashSet<>();
-
 }

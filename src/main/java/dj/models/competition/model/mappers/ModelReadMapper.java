@@ -13,8 +13,7 @@ public class ModelReadMapper {
         return new ModelReadDto()
                 .setId(model.getId())
                 .setUser(model.getUser())
-                .setAchievements(model.getAchievements())
-                .setCharacteristics(model.getCharacteristics());
+                .setAchievements(model.getAchievements());
     }
 
     public List<ModelReadDto> toDto(List<Model> models) {

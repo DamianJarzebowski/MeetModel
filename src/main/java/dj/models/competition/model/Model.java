@@ -24,10 +24,6 @@ public class Model {
     private Long version;
 
     @ElementCollection
-    @CollectionTable(name = "MODEL_CHARACTERISTICS", joinColumns = @JoinColumn(name = "model_id"))
-    private Set<String> characteristics = new HashSet<>();
-
-    @ElementCollection
     @CollectionTable(name = "MODEL_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> achievements = new HashSet<>();
 

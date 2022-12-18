@@ -35,9 +35,7 @@ public class ModelStepDefCRUD {
                         .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")))
-                .setCharacteristics(new HashSet<>(
-                        Set.of("Characteristics1", "Characteristics2")));
+                        Set.of("Achievement1", "Achievement2")));
     }
 
     @Given("Create a new model.")
@@ -55,8 +53,7 @@ public class ModelStepDefCRUD {
         var expected = new ModelReadDto()
                 .setId(actualReadModel.getId())
                 .setUser(dateToCreateModel().getUser())
-                .setAchievements(dateToCreateModel().getAchievements())
-                .setCharacteristics(dateToCreateModel().getCharacteristics());
+                .setAchievements(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
@@ -101,8 +98,7 @@ public class ModelStepDefCRUD {
     @Then("Check correct data change lists.")
     public void check_correct_data_change_lists() {
         var expected = actualReadModel
-                .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")))
-                .setCharacteristics(new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2")));
+                .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")));
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }

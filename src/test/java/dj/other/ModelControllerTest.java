@@ -48,9 +48,7 @@ class ModelControllerTest {
                         .setDescription("abcd")
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")))
-                .setCharacteristics(new HashSet<>(
-                        Set.of("Characteristics1", "Characteristics2")));
+                        Set.of("Achievement1", "Achievement2")));
     }
 
     // For looking -1L always will be return exception bcs id will be never under 1
@@ -72,8 +70,7 @@ class ModelControllerTest {
         var expected = new ModelReadDto()
                 .setId(actual.getId())
                 .setUser(dateToCreateModel().getUser())
-                .setAchievements(dateToCreateModel().getAchievements())
-                .setCharacteristics(dateToCreateModel().getCharacteristics());
+                .setAchievements(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
@@ -110,13 +107,11 @@ class ModelControllerTest {
         var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
 
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
-        update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate, HttpStatus.SC_OK);
 
         var actual = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         var expected = actual
-                .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")))
-                .setCharacteristics(new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2")));
+                .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")));
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }

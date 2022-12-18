@@ -65,15 +65,6 @@ public class ModelServiceImpl implements ModelService {
         return modelReadMapper.toDto(actual);
     }
 
-    @Transactional
-    @Override
-    public ModelReadDto updateCharacteristic(long id, Set<String> characteristics) {
-        var actual = findModelInDataBaseOrThrowNotFoundException(id);
-        actual.setCharacteristics(characteristics);
-        log.info("Model about id {} updated characteristics", id);
-        return modelReadMapper.toDto(actual);
-    }
-
     @Override
     public void delete(long id) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);

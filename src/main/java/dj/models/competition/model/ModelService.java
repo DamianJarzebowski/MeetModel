@@ -34,11 +34,6 @@ public interface ModelService {
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    ModelReadDto updateCharacteristic(long id, Set<String> characteristics);
-
-    /**
-     * @throws dj.exception.notFound.NotFoundException
-     */
     void delete(long id);
 
 }
