@@ -55,7 +55,6 @@ public class ModelStepDefCRUD {
         var expected = new ModelReadDto()
                 .setId(actualReadModel.getId())
                 .setUser(dateToCreateModel().getUser())
-                .setAge(dateToCreateModel().getAge())
                 .setAchievements(dateToCreateModel().getAchievements())
                 .setCharacteristics(dateToCreateModel().getCharacteristics());
 
@@ -78,7 +77,6 @@ public class ModelStepDefCRUD {
     @Then("Check correct data change general.")
     public void check_correct_data_change_general() {
         var expected = actualReadModel
-                .setAge(20)
                 .setUser(new User()
                         .setName("Paulina")
                         .setLastName("Nowak")

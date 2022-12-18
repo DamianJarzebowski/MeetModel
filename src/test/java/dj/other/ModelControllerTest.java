@@ -40,14 +40,13 @@ class ModelControllerTest {
     }
 
     private ModelWriteDto dateToCreateModel() {
-
         return new ModelWriteDto()
                 .setUser(new User()
                         .setName("Ala")
                         .setLastName("Nowak")
+                        .setAge(18)
                         .setDescription("abcd")
                         .setEmail("email@gmail.com"))
-                .setAge(18)
                 .setAchievements(new HashSet<>(
                         Set.of("Achievement1", "Achievement2")))
                 .setCharacteristics(new HashSet<>(
@@ -73,7 +72,6 @@ class ModelControllerTest {
         var expected = new ModelReadDto()
                 .setId(actual.getId())
                 .setUser(dateToCreateModel().getUser())
-                .setAge(dateToCreateModel().getAge())
                 .setAchievements(dateToCreateModel().getAchievements())
                 .setCharacteristics(dateToCreateModel().getCharacteristics());
 
@@ -111,7 +109,6 @@ class ModelControllerTest {
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
         var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
 
-        update(modelLocation + "/skills", ModelReadDto.class, skillToUpdate, HttpStatus.SC_OK);
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
         update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate, HttpStatus.SC_OK);
 

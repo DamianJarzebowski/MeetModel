@@ -13,8 +13,6 @@ public class ModelWriteDto {
 
     private User user;
 
-    private Integer age;
-
     private Set<String> achievements = new HashSet<>();
 
     private Set<String> characteristics = new HashSet<>();
