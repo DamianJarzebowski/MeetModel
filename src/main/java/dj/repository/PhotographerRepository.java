@@ -1,6 +1,6 @@
 package dj.repository;
 
-import dj.models.identity.competition.photographer.Photographer;
+import dj.models.competition.photographer.Photographer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

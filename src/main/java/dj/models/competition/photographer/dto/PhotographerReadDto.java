@@ -1,6 +1,6 @@
-package dj.models.identity.competition.model.dto;
+package dj.models.competition.photographer.dto;
 
-import dj.models.identity.competition.User;
+import dj.models.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -9,16 +9,11 @@ import java.util.Set;
 
 @Data
 @Accessors(chain = true)
-public class ModelReadDto {
+public class PhotographerReadDto {
 
     private Long id;
 
     private User user;
 
-    private Integer age;
-
     private Set<String> achievements = new HashSet<>();
-
-    private Set<String> characteristics = new HashSet<>();
-
 }

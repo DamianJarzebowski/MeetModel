@@ -1,7 +1,7 @@
-package dj.models.identity.competition.photographer.mappers;
+package dj.models.competition.photographer.mappers;
 
-import dj.models.identity.competition.photographer.Photographer;
-import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
+import dj.models.competition.photographer.Photographer;
+import dj.models.competition.photographer.dto.PhotographerReadDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

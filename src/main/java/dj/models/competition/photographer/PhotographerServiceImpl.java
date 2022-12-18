@@ -1,10 +1,10 @@
-package dj.models.identity.competition.photographer;
+package dj.models.competition.photographer;
 
-import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
-import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
-import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
-import dj.models.identity.competition.photographer.mappers.PhotographerReadMapper;
-import dj.models.identity.competition.photographer.mappers.PhotographerWriteMapper;
+import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
+import dj.models.competition.photographer.dto.PhotographerReadDto;
+import dj.models.competition.photographer.dto.PhotographerWriteDto;
+import dj.models.competition.photographer.mappers.PhotographerReadMapper;
+import dj.models.competition.photographer.mappers.PhotographerWriteMapper;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
 import dj.repository.PhotographerRepository;

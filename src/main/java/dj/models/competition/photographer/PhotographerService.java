@@ -1,8 +1,8 @@
-package dj.models.identity.competition.photographer;
+package dj.models.competition.photographer;
 
-import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
-import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
-import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
+import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
+import dj.models.competition.photographer.dto.PhotographerReadDto;
+import dj.models.competition.photographer.dto.PhotographerWriteDto;
 
 import java.util.List;
 import java.util.Set;

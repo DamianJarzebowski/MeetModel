@@ -1,10 +1,10 @@
 package dj.hellocucumber.model_test;
 
 import dj.other.CRUD_Test;
-import dj.models.identity.competition.User;
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
-import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
+import dj.models.competition.User;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelWriteDto;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

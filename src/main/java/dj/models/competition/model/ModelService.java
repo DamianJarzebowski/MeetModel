@@ -1,8 +1,8 @@
-package dj.models.identity.competition.model;
+package dj.models.competition.model;
 
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
-import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelWriteDto;
 
 import java.util.List;
 import java.util.Set;

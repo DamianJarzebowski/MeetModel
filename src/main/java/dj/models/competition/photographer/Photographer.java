@@ -1,6 +1,6 @@
-package dj.models.identity.competition.model;
+package dj.models.competition.photographer;
 
-import dj.models.identity.competition.User;
+import dj.models.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 @Entity
-public class Model {
+public class Photographer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,7 @@ public class Model {
     private Long version;
 
     @ElementCollection
-    @CollectionTable(name = "MODEL_CHARACTERISTICS", joinColumns = @JoinColumn(name = "model_id"))
-    private Set<String> characteristics = new HashSet<>();
-
-    @ElementCollection
-    @CollectionTable(name = "MODEL_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "model_id"))
+    @CollectionTable(name = "PHOTOGRAPHER_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "photographer_id"))
     private Set<String> achievements = new HashSet<>();
 
 }

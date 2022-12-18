@@ -1,6 +1,6 @@
-package dj.models.identity.competition.photographer.dto;
+package dj.models.competition.photographer.dto;
 
-import dj.models.identity.competition.User;
+import dj.models.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

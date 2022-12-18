@@ -1,7 +1,7 @@
-package dj.models.identity.competition.model.mappers;
+package dj.models.competition.model.mappers;
 
-import dj.models.identity.competition.model.Model;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
+import dj.models.competition.model.Model;
+import dj.models.competition.model.dto.ModelWriteDto;
 import org.springframework.stereotype.Service;
 
 @Service

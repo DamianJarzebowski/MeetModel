@@ -1,4 +1,4 @@
-package dj.models.identity.competition;
+package dj.models.competition;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

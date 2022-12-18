@@ -1,12 +1,12 @@
-package dj.models.identity.competition.model;
+package dj.models.competition.model;
 
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
-import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
-import dj.models.identity.competition.model.mappers.ModelReadMapper;
-import dj.models.identity.competition.model.mappers.ModelWriteMapper;
+import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelWriteDto;
+import dj.models.competition.model.mappers.ModelReadMapper;
+import dj.models.competition.model.mappers.ModelWriteMapper;
 import dj.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

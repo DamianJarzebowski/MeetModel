@@ -1,10 +1,10 @@
 package dj.api;
 
-import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.photographer.PhotographerServiceImpl;
-import dj.models.identity.competition.photographer.dto.PhotographerPersonalInfoDto;
-import dj.models.identity.competition.photographer.dto.PhotographerReadDto;
-import dj.models.identity.competition.photographer.dto.PhotographerWriteDto;
+import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.photographer.PhotographerServiceImpl;
+import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
+import dj.models.competition.photographer.dto.PhotographerReadDto;
+import dj.models.competition.photographer.dto.PhotographerWriteDto;
 import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

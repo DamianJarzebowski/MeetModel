@@ -1,9 +1,9 @@
 package dj.api;
 
-import dj.models.identity.competition.model.ModelService;
-import dj.models.identity.competition.model.dto.ModelPersonalInformationDto;
-import dj.models.identity.competition.model.dto.ModelReadDto;
-import dj.models.identity.competition.model.dto.ModelWriteDto;
+import dj.models.competition.model.ModelService;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelWriteDto;
 import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
