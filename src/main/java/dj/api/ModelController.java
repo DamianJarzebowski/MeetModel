@@ -1,7 +1,7 @@
 package dj.api;
 
 import dj.models.competition.model.ModelService;
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.PersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -44,7 +44,7 @@ public class ModelController {
     }
 
     @PutMapping("/{id}/general")
-    ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
+    ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody PersonalInformationDto dto) {
         ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
         return ResponseEntity.ok(updatedModel);
     }

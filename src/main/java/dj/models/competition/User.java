@@ -3,7 +3,13 @@ package dj.models.competition;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Accessors(chain = true)
@@ -23,4 +29,9 @@ public class User {
     private int age;
 
     private String email;
+
+    @ElementCollection
+    @CollectionTable(name = "MODEL_SCOPE_OF_COOPERATION", joinColumns = @JoinColumn(name = "model_id"))
+    private HashMap<String, Boolean> scopeOfCooperation = new HashMap<>();
+
 }

@@ -1,6 +1,6 @@
 package dj.models.competition.photographer;
 
-import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
+import dj.models.competition.PersonalInformationDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
 import dj.models.competition.photographer.mappers.PhotographerReadMapper;
@@ -45,7 +45,7 @@ public class PhotographerServiceImpl implements PhotographerService {
         return photographerReadMapper.toDto(photographer);    }
 
     @Override
-    public PhotographerReadDto updatePersonalInformation(long id, PhotographerPersonalInfoDto dto) {
+    public PhotographerReadDto updatePersonalInformation(long id, PersonalInformationDto dto) {
         var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
         actual
                 .setUser(dto.getUser());

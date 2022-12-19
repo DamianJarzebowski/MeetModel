@@ -1,6 +1,6 @@
 package dj.models.competition.model;
 
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.PersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -49,7 +49,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Transactional
     @Override
-    public ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto) {
+    public ModelReadDto updatePersonalInformation(long id, PersonalInformationDto dto) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual
                 .setUser(dto.getUser());
