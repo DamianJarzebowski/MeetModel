@@ -1,6 +1,6 @@
 package dj.api;
 
-import dj.models.competition.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;

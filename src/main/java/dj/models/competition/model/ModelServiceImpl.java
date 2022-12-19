@@ -1,6 +1,6 @@
 package dj.models.competition.model;
 
-import dj.models.competition.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;

@@ -1,11 +1,11 @@
 package dj.hellocucumber.model_test;
 
-import dj.models.competition.ScopeOfWork;
-import dj.models.competition.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.ScopeOfWork;
+import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.other.CRUD_Test;
-import dj.models.competition.User;
+import dj.models.competition.common_to_all_models.User;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;

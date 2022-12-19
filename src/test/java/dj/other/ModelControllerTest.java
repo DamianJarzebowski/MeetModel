@@ -1,15 +1,14 @@
 package dj.other;
 
 import dj.exception.notFound.NotFoundException;
-import dj.models.competition.ScopeOfWork;
-import dj.models.competition.User;
+import dj.models.competition.common_to_all_models.ScopeOfWork;
+import dj.models.competition.common_to_all_models.User;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
-import io.restassured.internal.common.assertion.AssertionSupport;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

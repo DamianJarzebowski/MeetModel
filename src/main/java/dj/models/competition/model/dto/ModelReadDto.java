@@ -1,7 +1,7 @@
 package dj.models.competition.model.dto;
 
-import dj.models.competition.ScopeOfWork;
-import dj.models.competition.User;
+import dj.models.competition.common_to_all_models.ScopeOfWork;
+import dj.models.competition.common_to_all_models.User;
 import dj.models.competition.model.Model;
 import lombok.Data;
 import lombok.experimental.Accessors;
