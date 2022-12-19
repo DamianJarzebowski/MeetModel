@@ -1,5 +1,6 @@
 package dj.models.competition.photographer;
 
+import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
 import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
@@ -25,6 +26,11 @@ public interface PhotographerService {
      * @throws dj.exception.notFound.NotFoundException
      */
     PhotographerReadDto updatePersonalInformation(long id, UserDto dto);
+
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
+    PhotographerReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

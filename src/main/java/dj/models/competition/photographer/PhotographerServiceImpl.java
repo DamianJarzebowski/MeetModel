@@ -1,5 +1,6 @@
 package dj.models.competition.photographer;
 
+import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
 import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
@@ -49,15 +50,26 @@ public class PhotographerServiceImpl implements PhotographerService {
         var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
         actual
                 .setUser(dto.getUser());
-        log.info("Photographer about id {} updated", id);
-        return photographerReadMapper.toDto(actual);    }
+        log.info("Photographer about id {} updated personal information", id);
+        return photographerReadMapper.toDto(actual);
+    }
+
+    @Override
+    public PhotographerReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto) {
+        var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
+        actual
+                .setScopeOfWork(dto.getScopeOfWork());
+        log.info("Photographer about id {} updated scope of work", id);
+        return photographerReadMapper.toDto(actual);
+    }
 
     @Override
     public PhotographerReadDto updateAchievements(long id, Set<String> achievements) {
         var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
         actual.setAchievements(achievements);
         log.info("Photographer about id {} updated achievements", id);
-        return photographerReadMapper.toDto(actual);    }
+        return photographerReadMapper.toDto(actual);
+    }
 
     @Override
     public void delete(long id) {
