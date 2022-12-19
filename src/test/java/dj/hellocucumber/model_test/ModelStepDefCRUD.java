@@ -4,7 +4,7 @@ import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.other.CRUD_Test;
 import dj.models.competition.User;
-import dj.models.competition.PersonalInformationDto;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import io.cucumber.java.en.Given;
@@ -76,7 +76,7 @@ public class ModelStepDefCRUD {
 
     @When("Update personal information.")
     public void update_personal_information() {
-        PersonalInformationDto generalDateToUpdate = new PersonalInformationDto()
+        ModelPersonalInformationDto generalDateToUpdate = new ModelPersonalInformationDto()
                     .setUser(new User()
                             .setName("Paulina")
                             .setLastName("Nowak")

@@ -1,6 +1,6 @@
 package dj.models.competition.photographer;
 
-import dj.models.competition.PersonalInformationDto;
+import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
 
@@ -24,7 +24,7 @@ public interface PhotographerService {
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    PhotographerReadDto updatePersonalInformation(long id, PersonalInformationDto dto);
+    PhotographerReadDto updatePersonalInformation(long id, PhotographerPersonalInfoDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

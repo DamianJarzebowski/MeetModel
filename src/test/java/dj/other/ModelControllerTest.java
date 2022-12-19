@@ -4,7 +4,7 @@ import dj.exception.notFound.NotFoundException;
 import dj.models.competition.User;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
-import dj.models.competition.PersonalInformationDto;
+import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -96,7 +96,7 @@ class ModelControllerTest {
 
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
-        var dateToUpdate = new PersonalInformationDto()
+        var dateToUpdate = new ModelPersonalInformationDto()
                 .setUser(new User()
                         .setName("Paulina")
                         .setLastName("Nowak")
