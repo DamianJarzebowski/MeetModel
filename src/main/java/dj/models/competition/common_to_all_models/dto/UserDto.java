@@ -1,4 +1,4 @@
-package dj.models.competition.photographer.dto;
+package dj.models.competition.common_to_all_models.dto;
 
 import dj.models.competition.common_to_all_models.User;
 import lombok.Data;
@@ -6,7 +6,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class PhotographerPersonalInfoDto {
+public class UserDto {
 
     private User user;
+
 }

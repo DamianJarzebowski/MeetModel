@@ -1,7 +1,7 @@
 package dj.models.competition.model;
 
-import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -26,7 +26,7 @@ public interface ModelService {
     /**
      * @throws dj.exception.notFound.NotFoundException
      */
-    ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto);
+    ModelReadDto updatePersonalInformation(long id, UserDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

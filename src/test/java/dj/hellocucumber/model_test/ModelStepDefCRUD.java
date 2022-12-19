@@ -1,12 +1,12 @@
 package dj.hellocucumber.model_test;
 
 import dj.models.competition.common_to_all_models.ScopeOfWork;
-import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.other.CRUD_Test;
 import dj.models.competition.common_to_all_models.User;
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import io.cucumber.java.en.Given;
@@ -87,7 +87,7 @@ public class ModelStepDefCRUD {
 
     @When("Update personal information.")
     public void update_personal_information() {
-        ModelPersonalInformationDto generalDateToUpdate = new ModelPersonalInformationDto()
+        UserDto generalDateToUpdate = new UserDto()
                     .setUser(new User()
                             .setName("Paulina")
                             .setLastName("Nowak")

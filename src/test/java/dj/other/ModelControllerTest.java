@@ -5,7 +5,7 @@ import dj.models.competition.common_to_all_models.ScopeOfWork;
 import dj.models.competition.common_to_all_models.User;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -106,7 +106,7 @@ class ModelControllerTest {
 
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
-        var dateToUpdate = new ModelPersonalInformationDto()
+        var dateToUpdate = new UserDto()
                 .setUser(new User()
                         .setName("Paulina")
                         .setLastName("Nowak")

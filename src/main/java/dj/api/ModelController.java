@@ -1,8 +1,8 @@
 package dj.api;
 
-import dj.models.competition.common_to_all_models.ScopeOfWorkDto;
+import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
 import dj.models.competition.model.ModelService;
-import dj.models.competition.model.dto.ModelPersonalInformationDto;
+import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -45,7 +45,7 @@ public class ModelController {
     }
 
     @PutMapping("/{id}/general")
-    ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
+    ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody UserDto dto) {
         ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
         return ResponseEntity.ok(updatedModel);
     }

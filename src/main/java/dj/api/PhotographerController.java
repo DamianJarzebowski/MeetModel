@@ -1,8 +1,8 @@
 package dj.api;
 
+import dj.models.competition.common_to_all_models.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.photographer.PhotographerServiceImpl;
-import dj.models.competition.photographer.dto.PhotographerPersonalInfoDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
 import io.swagger.models.Response;
@@ -44,7 +44,7 @@ public class PhotographerController {
     }
 
     @PutMapping("/{id}/general")
-    ResponseEntity<PhotographerReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody PhotographerPersonalInfoDto dto) {
+    ResponseEntity<PhotographerReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody UserDto dto) {
         PhotographerReadDto updatedModel = photographerService.updatePersonalInformation(id, dto);
         return ResponseEntity.ok(updatedModel);
     }
