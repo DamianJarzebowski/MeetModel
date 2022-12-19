@@ -13,6 +13,7 @@ public class ModelReadMapper {
         return new ModelReadDto()
                 .setId(model.getId())
                 .setUser(model.getUser())
+                .setScopeOfWork(model.getScopeOfWork())
                 .setSizes(model.getSizes())
                 .setAchievements(model.getAchievements());
     }

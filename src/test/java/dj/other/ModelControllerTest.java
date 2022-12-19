@@ -1,6 +1,7 @@
 package dj.other;
 
 import dj.exception.notFound.NotFoundException;
+import dj.models.competition.ScopeOfWork;
 import dj.models.competition.User;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
@@ -8,6 +9,7 @@ import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
+import io.restassured.internal.common.assertion.AssertionSupport;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +55,14 @@ class ModelControllerTest {
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
                         Set.of("Achievement1", "Achievement2")))
+                .setScopeOfWork(new ScopeOfWork()
+                        .setAct(true)
+                        .setCoveredNudity(true)
+                        .setEditorial(true)
+                        .setFashion(true)
+                        .setGlamour(true)
+                        .setMakeUpAndStylization(true)
+                        .setPortrait(true))
                 .setSizes(new Model.Sizes()
                         .setGrowth(170)
                         .setWeight(60)
@@ -86,7 +96,8 @@ class ModelControllerTest {
                 .setId(actual.getId())
                 .setUser(dateToCreateModel().getUser())
                 .setSizes(dateToCreateModel().getSizes())
-                .setAchievements(dateToCreateModel().getAchievements());
+                .setAchievements(dateToCreateModel().getAchievements())
+                .setScopeOfWork(dateToCreateModel().getScopeOfWork());
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
@@ -137,6 +148,28 @@ class ModelControllerTest {
 
         var expected = updated
                 .setSizes(dateToUpdate.getSizes());
+
+        Assertions.assertThat(updated).isEqualTo(expected);
+    }
+
+    @Test
+    void shouldCreateAndUpdateScopeOfWork() {
+
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
+
+        var dateToUpdate = new ScopeOfWork()
+                .setAct(false)
+                .setCoveredNudity(false)
+                .setEditorial(false)
+                .setFashion(false)
+                .setGlamour(false)
+                .setMakeUpAndStylization(false)
+                .setPortrait(false);
+
+        var updated = update(modelLocation + "/scopeOfWork", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
+
+        var expected = updated
+                .setScopeOfWork(dateToUpdate);
 
         Assertions.assertThat(updated).isEqualTo(expected);
     }

@@ -11,6 +11,7 @@ public class ModelWriteMapper {
         return new Model()
                 .setUser(dto.getUser())
                 .setSizes(dto.getSizes())
-                .setAchievements(dto.getAchievements());
+                .setAchievements(dto.getAchievements())
+                .setScopeOfWork(dto.getScopeOfWork());
     }
 }

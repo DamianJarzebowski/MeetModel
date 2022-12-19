@@ -1,5 +1,6 @@
 package dj.models.competition.model.dto;
 
+import dj.models.competition.ScopeOfWork;
 import dj.models.competition.User;
 import dj.models.competition.model.Model;
 import lombok.Data;
@@ -15,6 +16,8 @@ public class ModelReadDto {
     private Long id;
 
     private User user;
+
+    private ScopeOfWork scopeOfWork;
 
     private Model.Sizes sizes;
 

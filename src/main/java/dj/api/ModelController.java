@@ -1,5 +1,6 @@
 package dj.api;
 
+import dj.models.competition.ScopeOfWorkDto;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -46,6 +47,12 @@ public class ModelController {
     @PutMapping("/{id}/general")
     ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
         ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
+        return ResponseEntity.ok(updatedModel);
+    }
+
+    @PutMapping("/{id}/scopeOfWork")
+    ResponseEntity<ModelReadDto> updateScopeOfWork(@PathVariable long id, @RequestBody ScopeOfWorkDto dto) {
+        ModelReadDto updatedModel = modelService.updateScopeOfWork(id, dto);
         return ResponseEntity.ok(updatedModel);
     }
 

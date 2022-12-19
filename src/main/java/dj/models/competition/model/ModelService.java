@@ -1,5 +1,6 @@
 package dj.models.competition.model;
 
+import dj.models.competition.ScopeOfWorkDto;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
@@ -31,6 +32,11 @@ public interface ModelService {
      * @throws dj.exception.notFound.NotFoundException
      */
     ModelReadDto updateModelSizes(long id, ModelSizesDto dto);
+
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
+    ModelReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

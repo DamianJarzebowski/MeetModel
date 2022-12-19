@@ -15,6 +15,10 @@ Feature: Testing CRUD Model Api
     When Update sizes
     Then Check correct data change sizes.
 
+  Scenario: Should create a new model and update him scope of work and check if new data is as we want.
+    When Update scope of work
+    Then check correct date change scope of work.
+
   Scenario: Should create a new model and update him list skills, achievement, characteristic and check if new data is as we want.
     When Update lists
     Then Check correct data change lists.

@@ -1,5 +1,6 @@
 package dj.models.competition.model;
 
+import dj.models.competition.ScopeOfWork;
 import dj.models.competition.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -22,6 +23,9 @@ public class Model {
 
     @Embedded
     private Sizes sizes;
+
+    @Embedded
+    private ScopeOfWork scopeOfWork;
 
     @Version
     private Long version;

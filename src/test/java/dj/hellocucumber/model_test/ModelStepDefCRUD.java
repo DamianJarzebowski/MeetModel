@@ -1,5 +1,7 @@
 package dj.hellocucumber.model_test;
 
+import dj.models.competition.ScopeOfWork;
+import dj.models.competition.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.other.CRUD_Test;
@@ -40,6 +42,14 @@ public class ModelStepDefCRUD {
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
                         Set.of("Achievement1", "Achievement2")))
+                .setScopeOfWork(new ScopeOfWork()
+                        .setAct(true)
+                        .setCoveredNudity(true)
+                        .setEditorial(true)
+                        .setFashion(true)
+                        .setGlamour(true)
+                        .setMakeUpAndStylization(true)
+                        .setPortrait(true))
                 .setSizes(new Model.Sizes()
                         .setGrowth(170)
                         .setWeight(60)
@@ -69,6 +79,7 @@ public class ModelStepDefCRUD {
                 .setId(actualReadModel.getId())
                 .setUser(dateToCreateModel().getUser())
                 .setSizes(dateToCreateModel().getSizes())
+                .setScopeOfWork(dateToCreateModel().getScopeOfWork())
                 .setAchievements(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
@@ -137,6 +148,36 @@ public class ModelStepDefCRUD {
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
 
+    @When("Update scope of work")
+    public void updateScopeOfWork() {
+        ScopeOfWorkDto scopeOfWorkToUpdate = new ScopeOfWorkDto()
+                .setScopeOfWork(new ScopeOfWork()
+                        .setAct(false)
+                        .setCoveredNudity(false)
+                        .setEditorial(false)
+                        .setFashion(false)
+                        .setGlamour(false)
+                        .setMakeUpAndStylization(false)
+                        .setPortrait(false));
+
+        update(modelLocation + "/scopeOfWork", ModelReadDto.class, scopeOfWorkToUpdate, HttpStatus.SC_OK);
+    }
+
+    @Then("check correct date change scope of work.")
+    public void checkCorrectDateChangeScopeOfWork() {
+        var expected = actualReadModel
+                .setScopeOfWork((new ScopeOfWork()
+                        .setAct(false)
+                        .setCoveredNudity(false)
+                        .setEditorial(false)
+                        .setFashion(false)
+                        .setGlamour(false)
+                        .setMakeUpAndStylization(false)
+                        .setPortrait(false)));
+
+        Assertions.assertThat(actualReadModel).isEqualTo(expected);
+    }
+
     @When("Update lists")
     public void update_lists() {
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
@@ -165,5 +206,8 @@ public class ModelStepDefCRUD {
                 .then()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
     }
+
+
+
 
 }

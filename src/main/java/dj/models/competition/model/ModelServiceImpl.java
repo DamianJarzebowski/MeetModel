@@ -1,5 +1,6 @@
 package dj.models.competition.model;
 
+import dj.models.competition.ScopeOfWorkDto;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
@@ -64,6 +65,15 @@ public class ModelServiceImpl implements ModelService {
         actual
                 .setSizes(dto.getSizes());
         log.info("Model about id {} updated sizes", id);
+        return modelReadMapper.toDto(actual);
+    }
+
+    @Override
+    public ModelReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto) {
+        var actual = findModelInDataBaseOrThrowNotFoundException(id);
+        actual
+                .setScopeOfWork(dto.getScopeOfWork());
+        log.info("Model about id {} updated scope fo work", id);
         return modelReadMapper.toDto(actual);
     }
 
