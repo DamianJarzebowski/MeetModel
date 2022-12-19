@@ -20,6 +20,9 @@ public class Model {
     @Embedded
     private User user;
 
+    @Embedded
+    private Sizes sizes;
+
     @Version
     private Long version;
 
@@ -27,4 +30,30 @@ public class Model {
     @CollectionTable(name = "MODEL_ACHIEVEMENTS", joinColumns = @JoinColumn(name = "model_id"))
     private Set<String> achievements = new HashSet<>();
 
+    @Data
+    @Embeddable
+    @Accessors(chain = true)
+    public static class Sizes {
+
+        private int growth;
+
+        private int weight;
+
+        private int bust;
+
+        private int waist;
+
+        private int hips;
+
+        private String hair;
+
+        private String hairColor;
+
+        private String naturalColor;
+
+        private String clothesSize;
+
+        private int footwear;
+
+    }
 }

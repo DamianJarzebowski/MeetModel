@@ -2,9 +2,11 @@ package dj.other;
 
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.User;
+import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
@@ -44,11 +46,24 @@ class ModelControllerTest {
                 .setUser(new User()
                         .setName("Ala")
                         .setLastName("Nowak")
-                        .setAge(18)
                         .setDescription("abcd")
+                        .setExperience("Medium")
+                        .setProfession("Model")
+                        .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")));
+                        Set.of("Achievement1", "Achievement2")))
+                .setSizes(new Model.Sizes()
+                        .setGrowth(170)
+                        .setWeight(60)
+                        .setBust(90)
+                        .setWaist(70)
+                        .setHips(90)
+                        .setHair("long")
+                        .setHairColor("Black")
+                        .setNaturalColor("Black")
+                        .setClothesSize("S")
+                        .setFootwear(36));
     }
 
     // For looking -1L always will be return exception bcs id will be never under 1
@@ -70,6 +85,7 @@ class ModelControllerTest {
         var expected = new ModelReadDto()
                 .setId(actual.getId())
                 .setUser(dateToCreateModel().getUser())
+                .setSizes(dateToCreateModel().getSizes())
                 .setAchievements(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -85,6 +101,8 @@ class ModelControllerTest {
                         .setName("Paulina")
                         .setLastName("Nowak")
                         .setDescription("qwer")
+                        .setProfession("Model")
+                        .setExperience("Master")
                         .setAge(18)
                         .setEmail("newEmail@gmail.com")
                 );
@@ -98,13 +116,37 @@ class ModelControllerTest {
     }
 
     @Test
-    void shouldCreateAndUpdateListSkillAchievementsCharacteristics() {
+    void shouldCreateAndUpdateModelSizes() {
 
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
-        var skillToUpdate = new HashSet<>(Set.of("NewSkill1", "NewSkill2"));
+        var dateToUpdate = new ModelSizesDto()
+                .setSizes(new Model.Sizes()
+                        .setGrowth(175)
+                        .setWeight(65)
+                        .setBust(95)
+                        .setWaist(75)
+                        .setHips(95)
+                        .setHair("short")
+                        .setHairColor("Red")
+                        .setNaturalColor("Black")
+                        .setClothesSize("M")
+                        .setFootwear(36));
+
+        var updated = update(modelLocation + "/sizes", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
+
+        var expected = updated
+                .setSizes(dateToUpdate.getSizes());
+
+        Assertions.assertThat(updated).isEqualTo(expected);
+    }
+
+    @Test
+    void shouldCreateAndUpdateListAchievements() {
+
+        var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
+
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
-        var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
 
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
 

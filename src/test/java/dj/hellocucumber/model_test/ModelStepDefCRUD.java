@@ -1,5 +1,7 @@
 package dj.hellocucumber.model_test;
 
+import dj.models.competition.model.Model;
+import dj.models.competition.model.dto.ModelSizesDto;
 import dj.other.CRUD_Test;
 import dj.models.competition.User;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
@@ -32,10 +34,23 @@ public class ModelStepDefCRUD {
                         .setName("Ala")
                         .setLastName("Nowak")
                         .setDescription("abcd")
+                        .setExperience("Medium")
+                        .setProfession("Model")
                         .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")));
+                        Set.of("Achievement1", "Achievement2")))
+                .setSizes(new Model.Sizes()
+                        .setGrowth(170)
+                        .setWeight(60)
+                        .setBust(90)
+                        .setWaist(70)
+                        .setHips(90)
+                        .setHair("long")
+                        .setHairColor("Black")
+                        .setNaturalColor("Black")
+                        .setClothesSize("S")
+                        .setFootwear(36));
     }
 
     @Given("Create a new model.")
@@ -53,6 +68,7 @@ public class ModelStepDefCRUD {
         var expected = new ModelReadDto()
                 .setId(actualReadModel.getId())
                 .setUser(dateToCreateModel().getUser())
+                .setSizes(dateToCreateModel().getSizes())
                 .setAchievements(dateToCreateModel().getAchievements());
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
@@ -85,14 +101,46 @@ public class ModelStepDefCRUD {
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
 
+    @When("Update sizes")
+    public void updateSizes() {
+        ModelSizesDto sizesDateToUpdate = new ModelSizesDto()
+                .setSizes(new Model.Sizes()
+                        .setGrowth(175)
+                        .setWeight(65)
+                        .setBust(95)
+                        .setWaist(75)
+                        .setHips(95)
+                        .setHair("short")
+                        .setHairColor("Red")
+                        .setNaturalColor("Black")
+                        .setClothesSize("M")
+                        .setFootwear(36));
+
+        update(modelLocation + "/sizes", ModelReadDto.class, sizesDateToUpdate, HttpStatus.SC_OK);
+    }
+
+    @Then("Check correct data change sizes.")
+    public void checkCorrectDataChangeSizes() {
+        var expected = actualReadModel
+                .setSizes(new Model.Sizes()
+                        .setGrowth(175)
+                        .setWeight(65)
+                        .setBust(95)
+                        .setWaist(75)
+                        .setHips(95)
+                        .setHair("short")
+                        .setHairColor("Red")
+                        .setNaturalColor("Black")
+                        .setClothesSize("M")
+                        .setFootwear(36));
+
+        Assertions.assertThat(actualReadModel).isEqualTo(expected);
+    }
+
     @When("Update lists")
     public void update_lists() {
-        var skillToUpdate = new HashSet<>(Set.of("NewSkill1", "NewSkill2"));
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
-        var characteristicsToUpdate = new HashSet<>(Set.of("NewCharacteristics1", "NewCharacteristics2"));
-
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
-        update(modelLocation + "/characteristics", ModelReadDto.class, characteristicsToUpdate, HttpStatus.SC_OK);
     }
 
     @Then("Check correct data change lists.")
@@ -117,4 +165,5 @@ public class ModelStepDefCRUD {
                 .then()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
     }
+
 }

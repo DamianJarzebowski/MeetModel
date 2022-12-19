@@ -2,6 +2,7 @@ package dj.models.competition.model;
 
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 
 import java.util.List;
@@ -25,6 +26,11 @@ public interface ModelService {
      * @throws dj.exception.notFound.NotFoundException
      */
     ModelReadDto updatePersonalInformation(long id, ModelPersonalInformationDto dto);
+
+    /**
+     * @throws dj.exception.notFound.NotFoundException
+     */
+    ModelReadDto updateModelSizes(long id, ModelSizesDto dto);
 
     /**
      * @throws dj.exception.notFound.NotFoundException

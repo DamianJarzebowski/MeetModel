@@ -10,6 +10,7 @@ public class ModelWriteMapper {
     public Model toEntity(ModelWriteDto dto) {
         return new Model()
                 .setUser(dto.getUser())
+                .setSizes(dto.getSizes())
                 .setAchievements(dto.getAchievements());
     }
 }

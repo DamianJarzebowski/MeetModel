@@ -4,6 +4,7 @@ import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import dj.models.competition.model.mappers.ModelReadMapper;
 import dj.models.competition.model.mappers.ModelWriteMapper;
@@ -53,6 +54,16 @@ public class ModelServiceImpl implements ModelService {
         actual
                 .setUser(dto.getUser());
         log.info("Model about id {} updated", id);
+        return modelReadMapper.toDto(actual);
+    }
+
+    @Transactional
+    @Override
+    public ModelReadDto updateModelSizes(long id, ModelSizesDto dto) {
+        var actual = findModelInDataBaseOrThrowNotFoundException(id);
+        actual
+                .setSizes(dto.getSizes());
+        log.info("Model about id {} updated sizes", id);
         return modelReadMapper.toDto(actual);
     }
 

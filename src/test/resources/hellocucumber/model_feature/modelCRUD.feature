@@ -11,6 +11,10 @@ Feature: Testing CRUD Model Api
     When Update personal information.
     Then Check correct data change general.
 
+  Scenario: Should create a new model and update him sizes and check if new data is as we want.
+    When Update sizes
+    Then Check correct data change sizes.
+
   Scenario: Should create a new model and update him list skills, achievement, characteristic and check if new data is as we want.
     When Update lists
     Then Check correct data change lists.
@@ -18,3 +22,4 @@ Feature: Testing CRUD Model Api
   Scenario: Should create a new model and try delete him.
     When Deleting model.
     Then Try read id deleted model, if return HTTP response status code NotFound will be ok.
+

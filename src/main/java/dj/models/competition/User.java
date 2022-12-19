@@ -16,6 +16,10 @@ public class User {
 
     private String description;
 
+    private String experience;
+
+    private String profession;
+
     private int age;
 
     private String email;

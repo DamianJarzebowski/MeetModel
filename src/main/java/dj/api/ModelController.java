@@ -3,6 +3,7 @@ package dj.api;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.model.dto.ModelPersonalInformationDto;
 import dj.models.competition.model.dto.ModelReadDto;
+import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,12 @@ public class ModelController {
     @PutMapping("/{id}/general")
     ResponseEntity<ModelReadDto> updatePersonalInformation(@PathVariable long id, @RequestBody ModelPersonalInformationDto dto) {
         ModelReadDto updatedModel = modelService.updatePersonalInformation(id, dto);
+        return ResponseEntity.ok(updatedModel);
+    }
+
+    @PutMapping("/{id}/sizes")
+    ResponseEntity<ModelReadDto> updateSizes(@PathVariable long id, @RequestBody ModelSizesDto dto) {
+        ModelReadDto updatedModel = modelService.updateModelSizes(id, dto);
         return ResponseEntity.ok(updatedModel);
     }
 
