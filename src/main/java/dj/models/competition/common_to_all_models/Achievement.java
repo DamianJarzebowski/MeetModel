@@ -1,4 +1,4 @@
-package dj.models.simple;
+package dj.models.competition.common_to_all_models;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
