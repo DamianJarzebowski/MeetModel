@@ -85,8 +85,8 @@ public class ModelStepDefCRUD {
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
 
-    @When("Update personal information.")
-    public void update_personal_information() {
+    @When("Update personal information about model.")
+    public void update_personal_information_about_model() {
         UserDto generalDateToUpdate = new UserDto()
                     .setUser(new User()
                             .setName("Paulina")
@@ -112,8 +112,8 @@ public class ModelStepDefCRUD {
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
 
-    @When("Update sizes")
-    public void updateSizes() {
+    @When("Update sizes model.")
+    public void updateSizesModel() {
         ModelSizesDto sizesDateToUpdate = new ModelSizesDto()
                 .setSizes(new Model.Sizes()
                         .setGrowth(175)
@@ -178,14 +178,14 @@ public class ModelStepDefCRUD {
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
 
-    @When("Update lists")
-    public void update_lists() {
+    @When("Update lists achievements model.")
+    public void update_lists_achievements_model() {
         var achievementToUpdate = new HashSet<>(Set.of("NewAchievement1", "NewAchievement2"));
         update(modelLocation + "/achievements", ModelReadDto.class, achievementToUpdate, HttpStatus.SC_OK);
     }
 
-    @Then("Check correct data change lists.")
-    public void check_correct_data_change_lists() {
+    @Then("Check correct data change lists achievements model.")
+    public void check_correct_data_change_lists_achievements_model() {
         var expected = actualReadModel
                 .setAchievements(new HashSet<>(Set.of("NewAchievement1", "NewAchievement2")));
 
