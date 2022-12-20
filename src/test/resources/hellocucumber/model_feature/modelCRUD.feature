@@ -4,7 +4,7 @@ Feature: Testing CRUD Model Api
     Given Create a new model.
     When Read created model.
 
-  Scenario: Should create a new model and read him, where  read model should by as created.
+  Scenario: Should create a new model and read him, where read model should by as created.
     Then Created model should be as read.
 
   Scenario: Should create a new model and update him personal information and check if new data is as we want.
@@ -19,7 +19,7 @@ Feature: Testing CRUD Model Api
     When Update scope of work
     Then check correct date change scope of work.
 
-  Scenario: Should create a new model and update him list skills, achievement, characteristic and check if new data is as we want.
+  Scenario: Should create a new model and update him list achievement and check if new data is as we want.
     When Update lists
     Then Check correct data change lists.
 
