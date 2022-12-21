@@ -1,6 +1,5 @@
 package dj.models.competition.domain.dto;
 
-import dj.models.competition.domain.ScopeOfWork;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,5 +7,18 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ScopeOfWorkDto {
 
-    private ScopeOfWork scopeOfWork;
+    private Boolean fashion;
+
+    private Boolean portrait;
+
+    private Boolean glamour;
+
+    private Boolean act;
+
+    private Boolean editorial;
+
+    private Boolean coveredNudity;
+
+    private Boolean makeUpAndStylization;
+
 }

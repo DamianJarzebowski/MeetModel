@@ -2,6 +2,7 @@ package dj.models.competition.photographer;
 
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.dto.UserDto;
+import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.domain.mappers.UserMapper;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
@@ -26,6 +27,7 @@ public class PhotographerServiceImpl implements PhotographerService {
     private final PhotographerWriteMapper photographerWriteMapper;
     private final PhotographerReadMapper photographerReadMapper;
     private final UserMapper userMapper;
+    private final ScopeOfWorkMapper scopeOfWorkMapper;
 
     @Override
     public PhotographerReadDto findById(long id) {
@@ -60,7 +62,7 @@ public class PhotographerServiceImpl implements PhotographerService {
     public PhotographerReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto) {
         var actual = findPhotographerInDataBaseOrThrowNotFoundException(id);
         actual
-                .setScopeOfWork(dto.getScopeOfWork());
+                .setScopeOfWork(scopeOfWorkMapper.toEntity(dto));
         log.info("Photographer about id {} updated scope of work", id);
         return photographerReadMapper.toDto(actual);
     }

@@ -4,6 +4,7 @@ import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.dto.UserDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
+import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.domain.mappers.UserMapper;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
@@ -30,6 +31,7 @@ public class ModelServiceImpl implements ModelService {
     private final ModelReadMapper modelReadMapper;
     private final ModelSizesMapper modelSizesMapper;
     private final UserMapper userMapper;
+    private final ScopeOfWorkMapper scopeOfWorkMapper;
 
     @Override
     public ModelReadDto create(ModelWriteDto dto) {
@@ -77,7 +79,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateScopeOfWork(long id, ScopeOfWorkDto dto) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual
-                .setScopeOfWork(dto.getScopeOfWork());
+                .setScopeOfWork(scopeOfWorkMapper.toEntity(dto));
         log.info("Model about id {} updated scope fo work", id);
         return modelReadMapper.toDto(actual);
     }

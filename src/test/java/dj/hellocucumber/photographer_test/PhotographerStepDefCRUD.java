@@ -102,14 +102,13 @@ public class PhotographerStepDefCRUD {
     @When("Update scope of work photographer.")
     public void updateScopeOfWorkPhotographer() {
         ScopeOfWorkDto scopeOfWorkToUpdate = new ScopeOfWorkDto()
-                .setScopeOfWork(new ScopeOfWork()
                         .setAct(false)
                         .setCoveredNudity(false)
                         .setEditorial(false)
                         .setFashion(false)
                         .setGlamour(false)
                         .setMakeUpAndStylization(false)
-                        .setPortrait(false));
+                        .setPortrait(false);
 
         update(photographerLocation + "/scopeOfWork", PhotographerReadDto.class, scopeOfWorkToUpdate, HttpStatus.SC_OK);
     }

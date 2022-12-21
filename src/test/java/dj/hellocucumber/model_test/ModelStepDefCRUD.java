@@ -155,14 +155,13 @@ public class ModelStepDefCRUD {
     @When("Update scope of work")
     public void updateScopeOfWork() {
         ScopeOfWorkDto scopeOfWorkToUpdate = new ScopeOfWorkDto()
-                .setScopeOfWork(new ScopeOfWork()
                         .setAct(false)
                         .setCoveredNudity(false)
                         .setEditorial(false)
                         .setFashion(false)
                         .setGlamour(false)
                         .setMakeUpAndStylization(false)
-                        .setPortrait(false));
+                        .setPortrait(false);
 
         update(modelLocation + "/scopeOfWork", ModelReadDto.class, scopeOfWorkToUpdate, HttpStatus.SC_OK);
     }

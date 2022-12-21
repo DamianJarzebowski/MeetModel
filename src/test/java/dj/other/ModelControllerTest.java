@@ -3,6 +3,8 @@ package dj.other;
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
+import dj.models.competition.domain.dto.ScopeOfWorkDto;
+import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.domain.mappers.UserMapper;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
@@ -40,6 +42,9 @@ class ModelControllerTest {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ScopeOfWorkMapper scopeOfWorkMapper;
 
     @BeforeEach
     void beforeEach() {
@@ -167,7 +172,7 @@ class ModelControllerTest {
 
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
-        var dateToUpdate = new ScopeOfWork()
+        var dateToUpdate = new ScopeOfWorkDto()
                 .setAct(false)
                 .setCoveredNudity(false)
                 .setEditorial(false)
@@ -179,7 +184,7 @@ class ModelControllerTest {
         var updated = update(modelLocation + "/scopeOfWork", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
 
         var expected = updated
-                .setScopeOfWork(dateToUpdate);
+                .setScopeOfWork(scopeOfWorkMapper.toEntity(dateToUpdate));
 
         Assertions.assertThat(updated).isEqualTo(expected);
     }
