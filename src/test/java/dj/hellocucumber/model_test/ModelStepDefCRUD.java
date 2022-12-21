@@ -20,6 +20,7 @@ import org.assertj.core.api.Assertions;
 import java.util.HashSet;
 import java.util.Set;
 
+import static dj.other.CRUD_Test.*;
 import static dj.other.CRUD_Test.delete;
 import static dj.other.CRUD_Test.update;
 
@@ -65,12 +66,12 @@ public class ModelStepDefCRUD {
 
     @Given("Create a new model.")
     public void create_a_new_model() {
-        modelLocation = CRUD_Test.create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
+        modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
     }
 
     @When("Read created model.")
     public void read_created_model() {
-        actualReadModel = CRUD_Test.read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
+        actualReadModel = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
     }
 
     @Then("Created model should be as read.")
@@ -89,12 +90,14 @@ public class ModelStepDefCRUD {
     public void update_personal_information_about_model() {
         UserDto generalDateToUpdate = new UserDto()
                     .setUser(new User()
-                            .setName("Paulina")
-                            .setLastName("Nowak")
-                            .setDescription("qwer")
+                            .setName("Ala")
+                            .setLastName("Kowalski")
+                            .setDescription("qwerty")
+                            .setExperience("Master")
+                            .setProfession("Model")
                             .setAge(19)
-                            .setEmail("newEmail@gmail.com")
-                    );
+                            .setEmail("email123@gmail.com"));
+
         update( modelLocation + "/general", ModelReadDto.class, generalDateToUpdate, HttpStatus.SC_OK);
     }
 
@@ -102,12 +105,13 @@ public class ModelStepDefCRUD {
     public void check_correct_data_change_general() {
         var expected = actualReadModel
                 .setUser(new User()
-                        .setName("Paulina")
-                        .setLastName("Nowak")
-                        .setDescription("qwer")
+                        .setName("Ala")
+                        .setLastName("Kowalski")
+                        .setDescription("qwerty")
+                        .setExperience("Master")
+                        .setProfession("Model")
                         .setAge(19)
-                        .setEmail("newEmail@gmail.com")
-                );
+                        .setEmail("email123@gmail.com"));
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);
     }
