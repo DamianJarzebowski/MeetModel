@@ -1,6 +1,5 @@
 package dj.models.competition.model.dto;
 
-import dj.models.competition.model.Model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,5 +7,23 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ModelSizesDto {
 
-    private Model.Sizes sizes;
+    private int growth;
+
+    private int weight;
+
+    private int bust;
+
+    private int waist;
+
+    private int hips;
+
+    private String hair;
+
+    private String hairColor;
+
+    private String naturalColor;
+
+    private String clothesSize;
+
+    private int footwear;
 }

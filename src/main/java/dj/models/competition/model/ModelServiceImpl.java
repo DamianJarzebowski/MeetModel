@@ -8,6 +8,7 @@ import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;
 import dj.models.competition.model.mappers.ModelReadMapper;
+import dj.models.competition.model.mappers.ModelSizesMapper;
 import dj.models.competition.model.mappers.ModelWriteMapper;
 import dj.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class ModelServiceImpl implements ModelService {
     private final ModelRepository modelRepository;
     private final ModelWriteMapper modelWriteMapper;
     private final ModelReadMapper modelReadMapper;
+    private final ModelSizesMapper modelSizesMapper;
 
     @Override
     public ModelReadDto create(ModelWriteDto dto) {
@@ -63,7 +65,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelReadDto updateModelSizes(long id, ModelSizesDto dto) {
         var actual = findModelInDataBaseOrThrowNotFoundException(id);
         actual
-                .setSizes(dto.getSizes());
+                .setSizes(modelSizesMapper.toEntity(dto));
         log.info("Model about id {} updated sizes", id);
         return modelReadMapper.toDto(actual);
     }

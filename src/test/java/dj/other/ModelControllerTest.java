@@ -131,6 +131,20 @@ class ModelControllerTest {
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
         var dateToUpdate = new ModelSizesDto()
+                        .setGrowth(175)
+                        .setWeight(65)
+                        .setBust(95)
+                        .setWaist(75)
+                        .setHips(95)
+                        .setHair("short")
+                        .setHairColor("Red")
+                        .setNaturalColor("Black")
+                        .setClothesSize("M")
+                        .setFootwear(36);
+
+        var updated = update(modelLocation + "/sizes", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
+
+        var expected = updated
                 .setSizes(new Model.Sizes()
                         .setGrowth(175)
                         .setWeight(65)
@@ -142,11 +156,6 @@ class ModelControllerTest {
                         .setNaturalColor("Black")
                         .setClothesSize("M")
                         .setFootwear(36));
-
-        var updated = update(modelLocation + "/sizes", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
-
-        var expected = updated
-                .setSizes(dateToUpdate.getSizes());
 
         Assertions.assertThat(updated).isEqualTo(expected);
     }

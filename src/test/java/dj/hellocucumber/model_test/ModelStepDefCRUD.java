@@ -4,6 +4,7 @@ import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelSizesDto;
+import dj.models.competition.model.mappers.ModelSizesMapper;
 import dj.other.CRUD_Test;
 import dj.models.competition.domain.User;
 import dj.models.competition.domain.dto.UserDto;
@@ -16,6 +17,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -119,7 +121,6 @@ public class ModelStepDefCRUD {
     @When("Update sizes model.")
     public void updateSizesModel() {
         ModelSizesDto sizesDateToUpdate = new ModelSizesDto()
-                .setSizes(new Model.Sizes()
                         .setGrowth(175)
                         .setWeight(65)
                         .setBust(95)
@@ -129,7 +130,7 @@ public class ModelStepDefCRUD {
                         .setHairColor("Red")
                         .setNaturalColor("Black")
                         .setClothesSize("M")
-                        .setFootwear(36));
+                        .setFootwear(36);
 
         update(modelLocation + "/sizes", ModelReadDto.class, sizesDateToUpdate, HttpStatus.SC_OK);
     }
