@@ -91,14 +91,13 @@ public class ModelStepDefCRUD {
     @When("Update personal information about model.")
     public void update_personal_information_about_model() {
         UserDto generalDateToUpdate = new UserDto()
-                    .setUser(new User()
                             .setName("Ala")
                             .setLastName("Kowalski")
                             .setDescription("qwerty")
                             .setExperience("Master")
                             .setProfession("Model")
                             .setAge(19)
-                            .setEmail("email123@gmail.com"));
+                            .setEmail("email123@gmail.com");
 
         update( modelLocation + "/general", ModelReadDto.class, generalDateToUpdate, HttpStatus.SC_OK);
     }

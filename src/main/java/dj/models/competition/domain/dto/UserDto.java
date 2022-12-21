@@ -1,6 +1,5 @@
 package dj.models.competition.domain.dto;
 
-import dj.models.competition.domain.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,6 +7,17 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UserDto {
 
-    private User user;
+    private String name;
 
+    private String lastName;
+
+    private String description;
+
+    private String experience;
+
+    private String profession;
+
+    private int age;
+
+    private String email;
 }

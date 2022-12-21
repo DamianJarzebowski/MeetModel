@@ -73,14 +73,13 @@ public class PhotographerStepDefCRUD {
     @When("Update personal information about photographer.")
     public void updatePersonalInformationAboutPhotographer() {
         UserDto generalDateToUpdate = new UserDto()
-                .setUser(new User()
                         .setName("Ula")
                         .setLastName("Pawlowsky")
                         .setDescription("qwerty")
                         .setExperience("Master")
                         .setProfession("Photographer")
                         .setAge(19)
-                        .setEmail("email123@gmail.com"));
+                        .setEmail("email123@gmail.com");
 
         update(photographerLocation + "/general", PhotographerReadDto.class, generalDateToUpdate, HttpStatus.SC_OK);
     }

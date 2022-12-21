@@ -3,6 +3,7 @@ package dj.other;
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
+import dj.models.competition.domain.mappers.UserMapper;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.ModelService;
 import dj.models.competition.domain.dto.UserDto;
@@ -36,6 +37,9 @@ class ModelControllerTest {
 
     @Autowired
     private ModelService modelService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @BeforeEach
     void beforeEach() {
@@ -107,20 +111,18 @@ class ModelControllerTest {
         var modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
 
         var dateToUpdate = new UserDto()
-                .setUser(new User()
                         .setName("Paulina")
                         .setLastName("Nowak")
                         .setDescription("qwer")
                         .setProfession("Model")
                         .setExperience("Master")
                         .setAge(18)
-                        .setEmail("newEmail@gmail.com")
-                );
+                        .setEmail("newEmail@gmail.com");
 
         var updated = update(modelLocation + "/general", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
 
         var expected = updated
-                .setUser(dateToUpdate.getUser());
+                .setUser(userMapper.toEntity(dateToUpdate));
 
         Assertions.assertThat(updated).isEqualTo(expected);
     }
