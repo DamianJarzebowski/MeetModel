@@ -1,8 +1,8 @@
 package dj.api;
 
-import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
+import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.ModelService;
-import dj.models.competition.common_to_all_models.dto.UserDto;
+import dj.models.competition.domain.dto.UserDto;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelSizesDto;
 import dj.models.competition.model.dto.ModelWriteDto;

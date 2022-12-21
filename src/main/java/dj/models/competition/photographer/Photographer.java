@@ -1,7 +1,7 @@
 package dj.models.competition.photographer;
 
-import dj.models.competition.common_to_all_models.ScopeOfWork;
-import dj.models.competition.common_to_all_models.User;
+import dj.models.competition.domain.ScopeOfWork;
+import dj.models.competition.domain.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

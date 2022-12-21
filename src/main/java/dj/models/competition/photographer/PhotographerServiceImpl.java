@@ -1,7 +1,7 @@
 package dj.models.competition.photographer;
 
-import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
-import dj.models.competition.common_to_all_models.dto.UserDto;
+import dj.models.competition.domain.dto.ScopeOfWorkDto;
+import dj.models.competition.domain.dto.UserDto;
 import dj.models.competition.photographer.dto.PhotographerReadDto;
 import dj.models.competition.photographer.dto.PhotographerWriteDto;
 import dj.models.competition.photographer.mappers.PhotographerReadMapper;

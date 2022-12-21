@@ -1,6 +1,6 @@
-package dj.models.competition.common_to_all_models.dto;
+package dj.models.competition.domain.dto;
 
-import dj.models.competition.common_to_all_models.ScopeOfWork;
+import dj.models.competition.domain.ScopeOfWork;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

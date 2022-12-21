@@ -1,7 +1,7 @@
 package dj.models.competition.model;
 
-import dj.models.competition.common_to_all_models.dto.ScopeOfWorkDto;
-import dj.models.competition.common_to_all_models.dto.UserDto;
+import dj.models.competition.domain.dto.ScopeOfWorkDto;
+import dj.models.competition.domain.dto.UserDto;
 import dj.exception.ErrorMessage;
 import dj.exception.notFound.NotFoundException;
 import dj.models.competition.model.dto.ModelReadDto;
