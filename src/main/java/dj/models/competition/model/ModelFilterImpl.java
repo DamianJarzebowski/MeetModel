@@ -29,8 +29,8 @@ public class ModelFilterImpl implements ModelFilter {
                 .toList()));
     }
 
-
     /**
+     * use in filtering, this method help to look objects us interest
      * @return returns true when the object meets the search requirements
      */
     private Boolean filterAboutScopeOfWork(ScopeOfWork scopeOfWork, ScopeOfWorkDto dto) {
