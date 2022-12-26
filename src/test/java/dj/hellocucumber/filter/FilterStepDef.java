@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
@@ -67,27 +68,27 @@ public class FilterStepDef {
 
     @When("Try find created model.")
     public void tryFindCreatedModel() {
-        ScopeOfWorkDto looking = new ScopeOfWorkDto()
+        ScopeOfWorkDto wanted = new ScopeOfWorkDto()
                 .setGlamour(true)
                 .setPortrait(true);
 
-        filteredList.addAll(
-                RestAssured
+        var filterItem = RestAssured
                 .given()
                 .headers("Content-Type", ContentType.JSON)
-                .body(looking)
+                .body(wanted)
                 .get(filter)
-                .as(Collection.class)
-        );
+                .as(new TypeRef<List<ModelReadDto>>() {});
+
+        filteredList.addAll(filterItem);
 
     }
 
     @Then("Check if was found.")
     public void checkIfWasFound() {
 
-        ModelReadDto foundModel = filteredList.get(0);
+        var foundModel = filteredList.get(0);
 
-        ModelReadDto createdModel = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
+        var createdModel = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         Assertions.assertThat(foundModel.getId()).isEqualTo(createdModel.getId());
     }

@@ -18,7 +18,8 @@ public class ModelFilterController {
 
     @GetMapping("")
     ResponseEntity<List<ModelReadDto>> filterScopeOfWork(@ModelAttribute ScopeOfWorkDto dto) {
-        return ResponseEntity.ok(modelFilter.findModelsWithScopeOfWork(dto));
+        var result = modelFilter.findModelsWithScopeOfWork(dto);
+        return ResponseEntity.ok(result);
     }
 
 }
