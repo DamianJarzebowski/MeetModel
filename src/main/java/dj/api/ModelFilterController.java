@@ -1,5 +1,6 @@
 package dj.api;
 
+import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.ModelFilter;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -16,10 +17,20 @@ public class ModelFilterController {
 
     private final ModelFilter modelFilter;
 
-    @GetMapping("")
+    @GetMapping("/scopeOfWork")
     ResponseEntity<List<ModelReadDto>> filterScopeOfWork(@ModelAttribute ScopeOfWorkDto dto) {
         var result = modelFilter.findModelsWithScopeOfWork(dto);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/age")
+    ResponseEntity<List<ModelReadDto>> filterBetweenAge(@ModelAttribute AgeRangeDto range) {
+        var result = modelFilter.findModelBetweenAge(range);
+        return ResponseEntity.ok(result);
+    }
+
+
+
+
 
 }

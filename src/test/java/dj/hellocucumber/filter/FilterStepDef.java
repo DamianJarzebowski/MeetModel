@@ -2,6 +2,7 @@ package dj.hellocucumber.filter;
 
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
+import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -26,44 +27,43 @@ public class FilterStepDef {
 
 
     private String modelLocation;
-    private List<ModelReadDto> filteredList = new ArrayList<>();
+    private final List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
+    private List<ModelReadDto> filteredListAboutAge = new ArrayList<>();
 
-    private ModelWriteDto dateToCreateModel() {
-        return new ModelWriteDto()
-                .setUser(new User()
-                        .setName("Ala")
-                        .setLastName("Nowak")
-                        .setDescription("abcd")
-                        .setExperience("Medium")
-                        .setProfession("Model")
-                        .setAge(18)
-                        .setEmail("email@gmail.com"))
-                .setAchievements(new HashSet<>(
-                        Set.of("Achievement1", "Achievement2")))
-                .setScopeOfWork(new ScopeOfWork()
-                        .setAct(false)
-                        .setCoveredNudity(false)
-                        .setEditorial(false)
-                        .setFashion(false)
-                        .setGlamour(true)
-                        .setMakeUpAndStylization(false)
-                        .setPortrait(true))
-                .setSizes(new Model.Sizes()
-                        .setGrowth(170)
-                        .setWeight(60)
-                        .setBust(90)
-                        .setWaist(70)
-                        .setHips(90)
-                        .setHair("long")
-                        .setHairColor("Black")
-                        .setNaturalColor("Black")
-                        .setClothesSize("S")
-                        .setFootwear(36));
-    }
+    private final ModelWriteDto dateToCreateModel = new ModelWriteDto()
+            .setUser(new User()
+                    .setName("Ala")
+                    .setLastName("Nowak")
+                    .setDescription("abcd")
+                    .setExperience("Medium")
+                    .setProfession("Model")
+                    .setAge(18)
+                    .setEmail("email@gmail.com"))
+            .setAchievements(new HashSet<>(
+                    Set.of("Achievement1", "Achievement2")))
+            .setScopeOfWork(new ScopeOfWork()
+                    .setAct(false)
+                    .setCoveredNudity(false)
+                    .setEditorial(false)
+                    .setFashion(false)
+                    .setGlamour(true)
+                    .setMakeUpAndStylization(false)
+                    .setPortrait(true))
+            .setSizes(new Model.Sizes()
+                    .setGrowth(170)
+                    .setWeight(60)
+                    .setBust(90)
+                    .setWaist(70)
+                    .setHips(90)
+                    .setHair("long")
+                    .setHairColor("Black")
+                    .setNaturalColor("Black")
+                    .setClothesSize("S")
+                    .setFootwear(36));
 
     @Given("Create a new model with looking scope of work.")
     public void createANewModelWithLookingScopeOfWork() {
-        modelLocation = create(baseUri, dateToCreateModel(), HttpStatus.SC_CREATED);
+        modelLocation = create(baseUri, dateToCreateModel, HttpStatus.SC_CREATED);
     }
 
     @When("Try find created model.")
@@ -76,20 +76,54 @@ public class FilterStepDef {
                 .given()
                 .headers("Content-Type", ContentType.JSON)
                 .body(wanted)
-                .get(filter)
-                .as(new TypeRef<List<ModelReadDto>>() {});
+                .get(filter + "/scopeOfWork")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
 
-        filteredList.addAll(filterItem);
-
+        filteredListScopeOfWork.addAll(filterItem);
     }
 
     @Then("Check if was found.")
     public void checkIfWasFound() {
 
-        var foundModel = filteredList.get(0);
+        var foundModel = filteredListScopeOfWork.get(0);
 
         var createdModel = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
 
         Assertions.assertThat(foundModel.getId()).isEqualTo(createdModel.getId());
+    }
+
+    @Given("Create a new model with an age {int}.")
+    public void createANewModelWithAge(Integer age) {
+        ModelWriteDto modelToCreate = dateToCreateModel
+                .setUser(dateToCreateModel.getUser()
+                        .setAge(age));
+        modelLocation = create(baseUri, modelToCreate, HttpStatus.SC_CREATED);
+    }
+
+    @When("Try find models with age {int} {int}.")
+    public void tryFindModelsWithAgeFromTo(Integer from, Integer to) {
+
+        AgeRangeDto range = new AgeRangeDto()
+                .setFrom(from)
+                .setTo(to);
+
+        var filterItem = RestAssured
+                .given()
+                .headers("Content-Type", ContentType.JSON)
+                .body(range)
+                .get(filter + "/age")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
+
+        filteredListAboutAge.addAll(filterItem);
+
+    }
+
+    @Then("Size collected list will be = {int}.")
+    public void sizeCollectedListWillBeSize(Integer size) {
+
+        Assertions.assertThat(filteredListAboutAge).hasSize(size);
+        filteredListAboutAge.clear();
     }
 }

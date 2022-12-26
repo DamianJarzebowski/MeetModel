@@ -1,6 +1,7 @@
 package dj.models.competition.model;
 
 import dj.models.competition.domain.ScopeOfWork;
+import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -25,21 +26,16 @@ public class ModelFilterImpl implements ModelFilter {
 
     @Override
     public List<ModelReadDto> findModelsWithScopeOfWork(ScopeOfWorkDto dto) {
-        var listModels = modelRepository.findAll();
-        var mappedListModel = modelReadMapper.toDto(listModels);
-        return new ArrayList<>(mappedListModel)
+        return new ArrayList<>(findAllModelsAndMapToRead())
                 .stream()
                 .filter(model -> filterAboutScopeOfWork(model.getScopeOfWork(), dto))
                 .toList();
     }
 
     /**
-     * use in filtering, this method help to look objects us interest
-     *
-     * @return returns true when the object meets the search requirements
+     * @return returns true when the object matches the submitted scope of work.
      */
-    private Boolean filterAboutScopeOfWork(ScopeOfWork scopeOfWork, ScopeOfWorkDto dto) {
-
+    private boolean filterAboutScopeOfWork(ScopeOfWork scopeOfWork, ScopeOfWorkDto dto) {
         Field[] scopeOfWorkWanted = scopeOfWorkMapper.toEntity(dto).getClass().getDeclaredFields();
         Field[] scopeOfWorkModel = scopeOfWork.getClass().getDeclaredFields();
 
@@ -53,6 +49,29 @@ public class ModelFilterImpl implements ModelFilter {
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public List<ModelReadDto> findModelBetweenAge(AgeRangeDto range) {
+        return new ArrayList<>(findAllModelsAndMapToRead())
+                .stream()
+                .filter(model -> filterAboutAge(range, model))
+                .toList();
+    }
+
+    /**
+     * @return returns true when the age of the model is between the given range.
+     */
+    private boolean filterAboutAge(AgeRangeDto range, ModelReadDto model) {
+        int modelAge = model.getUser().getAge();
+        if (modelAge == range.getFrom() || modelAge == range.getTo())
+            return true;
+        else return modelAge >= range.getFrom() && modelAge <= range.getTo();
+    }
+
+    private List<ModelReadDto> findAllModelsAndMapToRead() {
+        var listModels = modelRepository.findAll();
+        return modelReadMapper.toDto(listModels);
     }
 
 
