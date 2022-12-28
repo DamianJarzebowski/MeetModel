@@ -5,17 +5,17 @@ Feature: Test filter examples
     When Try find created model.
     Then Check if was found.
 
-    Scenario Outline: Create
-      Given Create a new model with an age <Age>.
-      When Try find models with age <From> <To>.
-      Then Size collected list will be = <Size>.
+  Scenario Outline: Create multiple models of different ages and try to filter for different age ranges, expecting or not finding a model.
+    Given Create a new model with an age <Age>
+    When Try find models with age from <From> to <To>
+    Then Size collected list will be equal <Size>
 
-      Examples:
-      | Age | From |  To |  Size |
-      | 18  | 18   |  18 |  1    |
-      | 18  | 19   |  20 |  0    |
-      | 18  | 18   |  18 |  1    |
-      | 17  | 18   |  18 |  0    |
-      | 35  | 25   |  30 |  0    |
-      | 40  | 30   |  40 |  1    |
+    Examples:
+      | Age | From | To | Size |
+      | 18  | 18   | 18 | 1    |
+      | 25  | 20   | 30 | 1    |
+      | 18  | 19   | 20 | 0    |
+      | 17  | 18   | 18 | 0    |
+      | 35  | 25   | 30 | 0    |
+      | 40  | 30   | 40 | 1    |
 

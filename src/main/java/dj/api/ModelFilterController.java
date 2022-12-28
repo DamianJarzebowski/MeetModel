@@ -23,8 +23,8 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/age")
-    ResponseEntity<List<ModelReadDto>> filterBetweenAge(@ModelAttribute AgeRangeDto range) {
+    @PostMapping("/age")
+    ResponseEntity<List<ModelReadDto>> filterBetweenAge(@RequestBody AgeRangeDto range) {
         var result = modelFilter.findModelBetweenAge(range);
         return ResponseEntity.ok(result);
     }

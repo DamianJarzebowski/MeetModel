@@ -7,6 +7,7 @@ import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;
+import dj.repository.ModelRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,12 +16,16 @@ import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
 import static dj.other.CRUD_Test.*;
 
 public class FilterStepDef {
+
+    @Autowired
+    private ModelRepository modelRepository;
 
     private static final String baseUri = "http://localhost:8080/api/model";
     private static final String filter = "http://localhost:8080/api/filter";
@@ -93,7 +98,7 @@ public class FilterStepDef {
         Assertions.assertThat(foundModel.getId()).isEqualTo(createdModel.getId());
     }
 
-    @Given("Create a new model with an age {int}.")
+    @Given("Create a new model with an age {int}")
     public void createANewModelWithAge(Integer age) {
         ModelWriteDto modelToCreate = dateToCreateModel
                 .setUser(dateToCreateModel.getUser()
@@ -101,7 +106,7 @@ public class FilterStepDef {
         modelLocation = create(baseUri, modelToCreate, HttpStatus.SC_CREATED);
     }
 
-    @When("Try find models with age {int} {int}.")
+    @When("Try find models with age from {int} to {int}")
     public void tryFindModelsWithAgeFromTo(Integer from, Integer to) {
 
         AgeRangeDto range = new AgeRangeDto()
@@ -112,18 +117,17 @@ public class FilterStepDef {
                 .given()
                 .headers("Content-Type", ContentType.JSON)
                 .body(range)
-                .get(filter + "/age")
-                .as(new TypeRef<List<ModelReadDto>>() {
-                });
+                .post(filter + "/age")
+                .as(new TypeRef<List<ModelReadDto>>() {});
 
+        filteredListAboutAge.clear();
         filteredListAboutAge.addAll(filterItem);
-
     }
 
-    @Then("Size collected list will be = {int}.")
+    @Then("Size collected list will be equal {int}")
     public void sizeCollectedListWillBeSize(Integer size) {
 
         Assertions.assertThat(filteredListAboutAge).hasSize(size);
-        filteredListAboutAge.clear();
+        modelRepository.deleteAll();
     }
 }
