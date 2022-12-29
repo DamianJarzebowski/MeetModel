@@ -39,7 +39,7 @@ public class ModelStepDefCRUD {
                         .setName("Ala")
                         .setLastName("Nowak")
                         .setDescription("abcd")
-                        .setExperience("Medium")
+                        .setExperience(User.Experience.SMALL)
                         .setProfession("Model")
                         .setAge(18)
                         .setEmail("email@gmail.com"))
@@ -94,7 +94,7 @@ public class ModelStepDefCRUD {
                             .setName("Ala")
                             .setLastName("Kowalski")
                             .setDescription("qwerty")
-                            .setExperience("Master")
+                            .setExperience(User.Experience.MEDIUM)
                             .setProfession("Model")
                             .setAge(19)
                             .setEmail("email123@gmail.com");
@@ -109,7 +109,7 @@ public class ModelStepDefCRUD {
                         .setName("Ala")
                         .setLastName("Kowalski")
                         .setDescription("qwerty")
-                        .setExperience("Master")
+                        .setExperience(User.Experience.MEDIUM)
                         .setProfession("Model")
                         .setAge(19)
                         .setEmail("email123@gmail.com"));

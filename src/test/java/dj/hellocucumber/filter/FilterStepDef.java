@@ -40,7 +40,7 @@ public class FilterStepDef {
                     .setName("Ala")
                     .setLastName("Nowak")
                     .setDescription("abcd")
-                    .setExperience("Medium")
+                    .setExperience(User.Experience.SMALL)
                     .setProfession("Model")
                     .setAge(18)
                     .setEmail("email@gmail.com"))

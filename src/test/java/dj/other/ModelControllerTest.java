@@ -57,7 +57,7 @@ class ModelControllerTest {
                         .setName("Ala")
                         .setLastName("Nowak")
                         .setDescription("abcd")
-                        .setExperience("Medium")
+                        .setExperience(User.Experience.SMALL)
                         .setProfession("Model")
                         .setAge(18)
                         .setEmail("email@gmail.com"))
@@ -120,7 +120,7 @@ class ModelControllerTest {
                         .setLastName("Nowak")
                         .setDescription("qwer")
                         .setProfession("Model")
-                        .setExperience("Master")
+                        .setExperience(User.Experience.MEDIUM)
                         .setAge(18)
                         .setEmail("newEmail@gmail.com");
 

@@ -33,7 +33,7 @@ public class PhotographerStepDefCRUD {
                         .setName("Ala")
                         .setLastName("Nowak")
                         .setDescription("abcd")
-                        .setExperience("Medium")
+                        .setExperience(User.Experience.SMALL)
                         .setProfession("Photographer")
                         .setAge(18)
                         .setEmail("email@gmail.com"))
@@ -76,7 +76,7 @@ public class PhotographerStepDefCRUD {
                         .setName("Ula")
                         .setLastName("Pawlowsky")
                         .setDescription("qwerty")
-                        .setExperience("Master")
+                        .setExperience(User.Experience.MEDIUM)
                         .setProfession("Photographer")
                         .setAge(19)
                         .setEmail("email123@gmail.com");
@@ -91,7 +91,7 @@ public class PhotographerStepDefCRUD {
                         .setName("Ula")
                         .setLastName("Pawlowsky")
                         .setDescription("qwerty")
-                        .setExperience("Master")
+                        .setExperience(User.Experience.MEDIUM)
                         .setProfession("Photographer")
                         .setAge(19)
                         .setEmail("email123@gmail.com"));

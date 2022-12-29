@@ -1,5 +1,6 @@
 package dj.models.competition.domain.dto;
 
+import dj.models.competition.domain.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -13,7 +14,7 @@ public class UserDto {
 
     private String description;
 
-    private String experience;
+    private User.Experience experience;
 
     private String profession;
 
