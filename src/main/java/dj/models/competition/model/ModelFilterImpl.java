@@ -59,6 +59,12 @@ public class ModelFilterImpl implements ModelFilter {
                 .toList();
     }
 
+    @Override
+    public List<ModelReadDto> findModelsWithExperience(String query) {
+        var listModels = modelRepository.searchModelsWithLookingExperience(query);
+        return modelReadMapper.toDto(listModels);
+    }
+
     /**
      * @return returns true when the age of the model is between the given range.
      */

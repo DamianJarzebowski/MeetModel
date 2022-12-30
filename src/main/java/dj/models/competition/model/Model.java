@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Data
 @Accessors(chain = true)
+@Table(name = "MODELS")
 @Entity
 public class Model {
 

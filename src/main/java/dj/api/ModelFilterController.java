@@ -29,6 +29,14 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/experience")
+    ResponseEntity<List<ModelReadDto>> filterExperience(@RequestParam("query") String query) {
+        var result = modelFilter.findModelsWithExperience(query);
+        return ResponseEntity.ok(result);
+    }
+
+
+
 
 
 
