@@ -18,23 +18,25 @@ public class User {
 
     private String description;
 
-    // With it enum experience is mapped in database as string and not number.
     @Enumerated(EnumType.STRING)
     private Experience experience;
 
-    private String profession;
+    @Enumerated(EnumType.STRING)
+    private Profession profession;
 
     private int age;
 
     private String email;
 
     public enum Experience {
-
         BEGINNER,
         SMALL,
         MEDIUM,
         BIG;
-
+    }
+    public enum Profession {
+        MODEL,
+        PHOTOGRAPHER;
     }
 
 }

@@ -50,15 +50,43 @@ public class Model {
 
         private int hips;
 
-        private String hair;
+        @Enumerated(EnumType.STRING)
+        private Hair hair;
 
-        private String hairColor;
+        @Enumerated(EnumType.STRING)
+        private HairColor hairColor;
 
-        private String naturalColor;
+        @Enumerated(EnumType.STRING)
+        private HairColor naturalColor;
 
-        private String clothesSize;
+        @Enumerated(EnumType.STRING)
+        private ClothesSize clothesSize;
 
         private int footwear;
 
     }
+
+    public enum Hair {
+        SHORT,
+        LONG,
+        VERY_LONG;
+    }
+    public enum HairColor {
+        BROWN,
+        LIGHT_BLOND,
+        BLACK,
+        WHITE,
+        DARK_BLONDE,
+        RED,
+        DIFFERENT;
+    }
+    public enum ClothesSize {
+        XS,
+        S,
+        M,
+        L,
+        XL,
+        XXL;
+    }
+
 }

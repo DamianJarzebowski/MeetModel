@@ -40,7 +40,7 @@ public class ModelStepDefCRUD {
                         .setLastName("Nowak")
                         .setDescription("abcd")
                         .setExperience(User.Experience.SMALL)
-                        .setProfession("Model")
+                        .setProfession(User.Profession.MODEL)
                         .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
@@ -59,10 +59,10 @@ public class ModelStepDefCRUD {
                         .setBust(90)
                         .setWaist(70)
                         .setHips(90)
-                        .setHair("long")
-                        .setHairColor("Black")
-                        .setNaturalColor("Black")
-                        .setClothesSize("S")
+                        .setHair(Model.Hair.SHORT)
+                        .setHairColor(Model.HairColor.LIGHT_BLOND)
+                        .setNaturalColor(Model.HairColor.LIGHT_BLOND)
+                        .setClothesSize(Model.ClothesSize.S)
                         .setFootwear(36));
     }
 
@@ -95,7 +95,7 @@ public class ModelStepDefCRUD {
                             .setLastName("Kowalski")
                             .setDescription("qwerty")
                             .setExperience(User.Experience.MEDIUM)
-                            .setProfession("Model")
+                            .setProfession(User.Profession.MODEL)
                             .setAge(19)
                             .setEmail("email123@gmail.com");
 
@@ -110,7 +110,7 @@ public class ModelStepDefCRUD {
                         .setLastName("Kowalski")
                         .setDescription("qwerty")
                         .setExperience(User.Experience.MEDIUM)
-                        .setProfession("Model")
+                        .setProfession(User.Profession.MODEL)
                         .setAge(19)
                         .setEmail("email123@gmail.com"));
 
@@ -125,10 +125,10 @@ public class ModelStepDefCRUD {
                         .setBust(95)
                         .setWaist(75)
                         .setHips(95)
-                        .setHair("short")
-                        .setHairColor("Red")
-                        .setNaturalColor("Black")
-                        .setClothesSize("M")
+                        .setHair(Model.Hair.LONG)
+                        .setHairColor(Model.HairColor.RED)
+                        .setNaturalColor(Model.HairColor.BLACK)
+                        .setClothesSize(Model.ClothesSize.M)
                         .setFootwear(36);
 
         update(modelLocation + "/sizes", ModelReadDto.class, sizesDateToUpdate, HttpStatus.SC_OK);
@@ -143,10 +143,10 @@ public class ModelStepDefCRUD {
                         .setBust(95)
                         .setWaist(75)
                         .setHips(95)
-                        .setHair("short")
-                        .setHairColor("Red")
-                        .setNaturalColor("Black")
-                        .setClothesSize("M")
+                        .setHair(Model.Hair.LONG)
+                        .setHairColor(Model.HairColor.RED)
+                        .setNaturalColor(Model.HairColor.BLACK)
+                        .setClothesSize(Model.ClothesSize.M)
                         .setFootwear(36));
 
         Assertions.assertThat(actualReadModel).isEqualTo(expected);

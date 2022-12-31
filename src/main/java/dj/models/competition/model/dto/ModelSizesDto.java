@@ -1,5 +1,6 @@
 package dj.models.competition.model.dto;
 
+import dj.models.competition.model.Model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -17,13 +18,13 @@ public class ModelSizesDto {
 
     private int hips;
 
-    private String hair;
+    private Model.Hair hair;
 
-    private String hairColor;
+    private Model.HairColor hairColor;
 
-    private String naturalColor;
+    private Model.HairColor naturalColor;
 
-    private String clothesSize;
+    private Model.ClothesSize clothesSize;
 
     private int footwear;
 }

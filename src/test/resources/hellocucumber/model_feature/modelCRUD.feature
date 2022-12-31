@@ -1,6 +1,7 @@
 Feature: Testing CRUD Model Api
 
   Background:
+    Given Delete all records models
     Given Create a new model.
     When Read created model.
 

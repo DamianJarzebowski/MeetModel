@@ -16,7 +16,7 @@ public class UserDto {
 
     private User.Experience experience;
 
-    private String profession;
+    private User.Profession profession;
 
     private int age;
 

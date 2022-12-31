@@ -58,7 +58,7 @@ class ModelControllerTest {
                         .setLastName("Nowak")
                         .setDescription("abcd")
                         .setExperience(User.Experience.SMALL)
-                        .setProfession("Model")
+                        .setProfession(User.Profession.MODEL)
                         .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
@@ -77,10 +77,10 @@ class ModelControllerTest {
                         .setBust(90)
                         .setWaist(70)
                         .setHips(90)
-                        .setHair("long")
-                        .setHairColor("Black")
-                        .setNaturalColor("Black")
-                        .setClothesSize("S")
+                        .setHair(Model.Hair.SHORT)
+                        .setHairColor(Model.HairColor.LIGHT_BLOND)
+                        .setNaturalColor(Model.HairColor.LIGHT_BLOND)
+                        .setClothesSize(Model.ClothesSize.S)
                         .setFootwear(36));
     }
 
@@ -119,7 +119,7 @@ class ModelControllerTest {
                         .setName("Paulina")
                         .setLastName("Nowak")
                         .setDescription("qwer")
-                        .setProfession("Model")
+                        .setProfession(User.Profession.MODEL)
                         .setExperience(User.Experience.MEDIUM)
                         .setAge(18)
                         .setEmail("newEmail@gmail.com");
@@ -143,10 +143,10 @@ class ModelControllerTest {
                         .setBust(95)
                         .setWaist(75)
                         .setHips(95)
-                        .setHair("short")
-                        .setHairColor("Red")
-                        .setNaturalColor("Black")
-                        .setClothesSize("M")
+                        .setHair(Model.Hair.LONG)
+                        .setHairColor(Model.HairColor.RED)
+                        .setNaturalColor(Model.HairColor.BLACK)
+                        .setClothesSize(Model.ClothesSize.M)
                         .setFootwear(36);
 
         var updated = update(modelLocation + "/sizes", ModelReadDto.class, dateToUpdate, HttpStatus.SC_OK);
@@ -158,10 +158,10 @@ class ModelControllerTest {
                         .setBust(95)
                         .setWaist(75)
                         .setHips(95)
-                        .setHair("short")
-                        .setHairColor("Red")
-                        .setNaturalColor("Black")
-                        .setClothesSize("M")
+                        .setHair(Model.Hair.LONG)
+                        .setHairColor(Model.HairColor.RED)
+                        .setNaturalColor(Model.HairColor.BLACK)
+                        .setClothesSize(Model.ClothesSize.M)
                         .setFootwear(36));
 
         Assertions.assertThat(updated).isEqualTo(expected);

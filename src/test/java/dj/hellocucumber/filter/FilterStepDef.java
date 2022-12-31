@@ -24,9 +24,6 @@ import static dj.other.CRUD_Test.*;
 
 public class FilterStepDef {
 
-    @Autowired
-    private ModelRepository modelRepository;
-
     private static final String baseUri = "http://localhost:8080/api/model";
     private static final String filter = "http://localhost:8080/api/filter";
 
@@ -41,7 +38,7 @@ public class FilterStepDef {
                     .setLastName("Nowak")
                     .setDescription("abcd")
                     .setExperience(User.Experience.SMALL)
-                    .setProfession("Model")
+                    .setProfession(User.Profession.MODEL)
                     .setAge(18)
                     .setEmail("email@gmail.com"))
             .setAchievements(new HashSet<>(
@@ -60,10 +57,10 @@ public class FilterStepDef {
                     .setBust(90)
                     .setWaist(70)
                     .setHips(90)
-                    .setHair("long")
-                    .setHairColor("Black")
-                    .setNaturalColor("Black")
-                    .setClothesSize("S")
+                    .setHair(Model.Hair.SHORT)
+                    .setHairColor(Model.HairColor.LIGHT_BLOND)
+                    .setNaturalColor(Model.HairColor.LIGHT_BLOND)
+                    .setClothesSize(Model.ClothesSize.S)
                     .setFootwear(36));
 
     @Given("Create a new model with looking scope of work.")
@@ -128,6 +125,5 @@ public class FilterStepDef {
     public void sizeCollectedListWillBeSize(Integer size) {
 
         Assertions.assertThat(filteredListAboutAge).hasSize(size);
-        modelRepository.deleteAll();
     }
 }

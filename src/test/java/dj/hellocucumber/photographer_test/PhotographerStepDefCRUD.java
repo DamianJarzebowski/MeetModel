@@ -34,7 +34,7 @@ public class PhotographerStepDefCRUD {
                         .setLastName("Nowak")
                         .setDescription("abcd")
                         .setExperience(User.Experience.SMALL)
-                        .setProfession("Photographer")
+                        .setProfession(User.Profession.PHOTOGRAPHER)
                         .setAge(18)
                         .setEmail("email@gmail.com"))
                 .setAchievements(new HashSet<>(
@@ -77,7 +77,7 @@ public class PhotographerStepDefCRUD {
                         .setLastName("Pawlowsky")
                         .setDescription("qwerty")
                         .setExperience(User.Experience.MEDIUM)
-                        .setProfession("Photographer")
+                        .setProfession(User.Profession.PHOTOGRAPHER)
                         .setAge(19)
                         .setEmail("email123@gmail.com");
 
@@ -92,7 +92,7 @@ public class PhotographerStepDefCRUD {
                         .setLastName("Pawlowsky")
                         .setDescription("qwerty")
                         .setExperience(User.Experience.MEDIUM)
-                        .setProfession("Photographer")
+                        .setProfession(User.Profession.PHOTOGRAPHER)
                         .setAge(19)
                         .setEmail("email123@gmail.com"));
 
