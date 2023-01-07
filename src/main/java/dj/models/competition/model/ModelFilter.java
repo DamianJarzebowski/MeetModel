@@ -13,6 +13,8 @@ public interface ModelFilter {
     List<ModelReadDto> findModelBetweenAge(AgeRangeDto range);
 
     List<ModelReadDto> findModelsWithExperience(String query);
+
+    List<ModelReadDto> findModelsWithHairColor(String hairColor);
 }
 
 

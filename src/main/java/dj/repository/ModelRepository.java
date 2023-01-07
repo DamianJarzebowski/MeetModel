@@ -14,5 +14,8 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
     "m.experience = :query", nativeQuery = true)
     List<Model> searchModelsWithLookingExperience(String query);
 
+    @Query(value = "SELECT * FROM MODELS m WHERE " +
+            "m.hair_color = :query", nativeQuery = true)
+    List<Model> searchModelsWithLookingHairColor(String query);
 
 }

@@ -35,6 +35,12 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/hairColor")
+    ResponseEntity<List<ModelReadDto>> filterHairColor(@RequestParam String hairColor) {
+        var result = modelFilter.findModelsWithHairColor(hairColor);
+        return ResponseEntity.ok(result);
+    }
+
 
 
 
