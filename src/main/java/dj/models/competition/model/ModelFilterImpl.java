@@ -3,7 +3,6 @@ package dj.models.competition.model;
 import dj.exception.ErrorMessage;
 import dj.exception.badRequest.BadRequestException;
 import dj.models.competition.domain.ScopeOfWork;
-import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -54,11 +53,9 @@ public class ModelFilterImpl implements ModelFilter {
     }
 
     @Override
-    public List<ModelReadDto> findModelBetweenAge(AgeRangeDto range) {
-        return new ArrayList<>(findAllModelsAndMapToRead())
-                .stream()
-                .filter(model -> filterAboutAge(range, model))
-                .toList();
+    public List<ModelReadDto> findModelBetweenAge(int from, int to) {
+        var listModels = modelRepository.findByAgeBetween(from, to);
+        return modelReadMapper.toDto(listModels);
     }
 
     @Override
@@ -76,21 +73,10 @@ public class ModelFilterImpl implements ModelFilter {
         return modelReadMapper.toDto(listModels);
     }
 
-    /**
-     * @return returns true when the age of the model is between the given range.
-     */
-    private boolean filterAboutAge(AgeRangeDto range, ModelReadDto model) {
-        int modelAge = model.getUser().getAge();
-        if (modelAge == range.getFrom() || modelAge == range.getTo())
-            return true;
-        else return modelAge >= range.getFrom() && modelAge <= range.getTo();
-    }
-
     private List<ModelReadDto> findAllModelsAndMapToRead() {
         var listModels = modelRepository.findAll();
         return modelReadMapper.toDto(listModels);
     }
-
 
     /**
      * @return the safe enum name

@@ -1,6 +1,5 @@
 package dj.api;
 
-import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.ModelFilter;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -23,9 +22,10 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/age")
-    ResponseEntity<List<ModelReadDto>> filterBetweenAge(@RequestBody AgeRangeDto range) {
-        var result = modelFilter.findModelBetweenAge(range);
+    @GetMapping("/age")
+    ResponseEntity<List<ModelReadDto>> filterBetweenAge(@RequestParam int from,
+                                                        @RequestParam int to) {
+        var result = modelFilter.findModelBetweenAge(from, to);
         return ResponseEntity.ok(result);
     }
 
@@ -40,11 +40,6 @@ public class ModelFilterController {
         var result = modelFilter.findModelsWithHairColor(hairColor);
         return ResponseEntity.ok(result);
     }
-
-
-
-
-
 
 
 }

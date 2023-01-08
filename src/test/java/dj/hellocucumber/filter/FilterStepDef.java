@@ -2,12 +2,10 @@ package dj.hellocucumber.filter;
 
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
-import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;
-import dj.repository.ModelRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +14,6 @@ import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
@@ -29,7 +26,7 @@ public class FilterStepDef {
 
 
     private String modelLocation;
-    private final List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
+    private List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
     private List<ModelReadDto> filteredListAboutAge = new ArrayList<>();
 
     private final ModelWriteDto dateToCreateModel = new ModelWriteDto()
@@ -106,15 +103,12 @@ public class FilterStepDef {
     @When("Try find models with age from {int} to {int}")
     public void tryFindModelsWithAgeFromTo(Integer from, Integer to) {
 
-        AgeRangeDto range = new AgeRangeDto()
-                .setFrom(from)
-                .setTo(to);
-
         var filterItem = RestAssured
                 .given()
+                .pathParam("from", from)
+                .pathParam("to", to)
                 .headers("Content-Type", ContentType.JSON)
-                .body(range)
-                .post(filter + "/age")
+                .get(filter + "/age" + "?from={from}&to={to}")
                 .as(new TypeRef<List<ModelReadDto>>() {});
 
         filteredListAboutAge.clear();

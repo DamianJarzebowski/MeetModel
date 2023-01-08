@@ -1,4 +1,4 @@
-package dj.other;
+package dj.hellocucumber.domain;
 
 import dj.repository.ModelRepository;
 import io.cucumber.java.en.Given;
@@ -10,7 +10,7 @@ public class DomainStep {
     private ModelRepository modelRepository;
 
     @Given("Delete all records models")
-    public void deleteAllRecordsModels() {
+    public void delete_all_records_models() {
         modelRepository.deleteAll();
     }
 }
