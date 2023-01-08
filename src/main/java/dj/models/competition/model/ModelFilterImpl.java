@@ -2,7 +2,6 @@ package dj.models.competition.model;
 
 import dj.exception.ErrorMessage;
 import dj.exception.badRequest.BadRequestException;
-import dj.exception.notFound.NotFoundException;
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.dto.AgeRangeDto;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
@@ -16,9 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -70,20 +67,14 @@ public class ModelFilterImpl implements ModelFilter {
         return modelReadMapper.toDto(listModels);
     }
 
-
     @Override
     public List<ModelReadDto> findModelsWithHairColor(String hairColor) {
 
-      var enumName = findByName(hairColor).orElseThrow(() -> {
-          log.error("Enum hair color: {} does not exists", hairColor);
-          return new BadRequestException(ErrorMessage.BAD_REQUEST);
-      });
+        var enumName = normalizeNameHairColor(hairColor);
 
-          var listModels = modelRepository.searchModelsWithLookingHairColor(enumName);
-          return modelReadMapper.toDto(listModels);
+        var listModels = modelRepository.searchModelsWithLookingHairColor(enumName);
+        return modelReadMapper.toDto(listModels);
     }
-
-
 
     /**
      * @return returns true when the age of the model is between the given range.
@@ -100,13 +91,20 @@ public class ModelFilterImpl implements ModelFilter {
         return modelReadMapper.toDto(listModels);
     }
 
-    public Optional<String> findByName(String name) {
+
+    /**
+     * @return the safe enum name
+     * @throws BadRequestException if the searched enum does not exist
+     */
+    public String normalizeNameHairColor(String name) {
         for (Model.HairColor hairColor : Model.HairColor.values()) {
             if (hairColor.name().equalsIgnoreCase(name)) {
-                return Optional.of(hairColor.name());
+                return hairColor.name();
             }
         }
-        return Optional.empty();
+        log.error("Enum hair color: {} does not exists", name);
+        throw new BadRequestException(ErrorMessage.BAD_REQUEST);
+
     }
 
 
