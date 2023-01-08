@@ -30,8 +30,8 @@ public class ModelFilterController {
     }
 
     @GetMapping("/experience")
-    ResponseEntity<List<ModelReadDto>> filterExperience(@RequestParam("query") String query) {
-        var result = modelFilter.findModelsWithExperience(query);
+    ResponseEntity<List<ModelReadDto>> filterExperience(@RequestParam String experience) {
+        var result = modelFilter.findModelsWithExperience(experience);
         return ResponseEntity.ok(result);
     }
 

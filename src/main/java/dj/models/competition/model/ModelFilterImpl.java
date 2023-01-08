@@ -3,6 +3,7 @@ package dj.models.competition.model;
 import dj.exception.ErrorMessage;
 import dj.exception.badRequest.BadRequestException;
 import dj.models.competition.domain.ScopeOfWork;
+import dj.models.competition.domain.User;
 import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.model.dto.ModelReadDto;
@@ -59,16 +60,15 @@ public class ModelFilterImpl implements ModelFilter {
     }
 
     @Override
-    public List<ModelReadDto> findModelsWithExperience(String query) {
-        var listModels = modelRepository.searchModelsWithLookingExperience(query);
+    public List<ModelReadDto> findModelsWithExperience(String experience) {
+        var enumName = normalizeNameExperience(experience);
+        var listModels = modelRepository.searchModelsWithLookingExperience(enumName);
         return modelReadMapper.toDto(listModels);
     }
 
     @Override
     public List<ModelReadDto> findModelsWithHairColor(String hairColor) {
-
         var enumName = normalizeNameHairColor(hairColor);
-
         var listModels = modelRepository.searchModelsWithLookingHairColor(enumName);
         return modelReadMapper.toDto(listModels);
     }
@@ -79,18 +79,31 @@ public class ModelFilterImpl implements ModelFilter {
     }
 
     /**
-     * @return the safe enum name
+     * @return the safe enum name hair color
      * @throws BadRequestException if the searched enum does not exist
      */
-    public String normalizeNameHairColor(String name) {
-        for (Model.HairColor hairColor : Model.HairColor.values()) {
-            if (hairColor.name().equalsIgnoreCase(name)) {
-                return hairColor.name();
+    private String normalizeNameHairColor(String hairColor) {
+        for (Model.HairColor hc : Model.HairColor.values()) {
+            if (hc.name().equalsIgnoreCase(hairColor)) {
+                return hc.name();
             }
         }
-        log.error("Enum hair color: {} does not exists", name);
+        log.error("Enum hair color: {} does not exists", hairColor);
         throw new BadRequestException(ErrorMessage.BAD_REQUEST);
+    }
 
+    /**
+     * @return the safe enum name experience
+     * @throws BadRequestException if the searched enum does not exist
+     */
+    private String normalizeNameExperience(String experience) {
+        for (User.Experience exp : User.Experience.values()) {
+            if (exp.name().equalsIgnoreCase(experience)) {
+                return exp.name();
+            }
+        }
+        log.error("Enum experience: {} does not exists", experience);
+        throw new BadRequestException(ErrorMessage.BAD_REQUEST);
     }
 
 
