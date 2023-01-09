@@ -2,9 +2,7 @@ package dj.models.competition.model;
 
 import dj.exception.ErrorMessage;
 import dj.exception.badRequest.BadRequestException;
-import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
-import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.domain.mappers.ScopeOfWorkMapper;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.mappers.ModelReadMapper;
@@ -13,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +20,6 @@ public class ModelFilterImpl implements ModelFilter {
 
     private final ModelRepository modelRepository;
     private final ModelReadMapper modelReadMapper;
-    private final ScopeOfWorkMapper scopeOfWorkMapper;
 
     @Override
     public List<ModelReadDto> findModelsWithScopeOfWork(Boolean fashion, Boolean portrait, Boolean glamour, Boolean act,
@@ -50,6 +45,13 @@ public class ModelFilterImpl implements ModelFilter {
     public List<ModelReadDto> findModelsWithHairColor(String hairColor) {
         var enumName = normalizeNameHairColor(hairColor);
         var listModels = modelRepository.searchModelsWithLookingHairColor(enumName);
+        return modelReadMapper.toDto(listModels);
+    }
+
+    @Override
+    public List<ModelReadDto> findModelsWithNaturalColor(String naturalColor) {
+        var enumName = normalizeNameHairColor(naturalColor);
+        var listModels = modelRepository.searchModelsWithLookingNaturalColor(enumName);
         return modelReadMapper.toDto(listModels);
     }
 

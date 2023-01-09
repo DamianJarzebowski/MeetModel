@@ -46,5 +46,11 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/naturalColor")
+    ResponseEntity<List<ModelReadDto>> filterNaturalColor(@RequestParam String naturalColor) {
+        var result = modelFilter.findModelsWithNaturalColor(naturalColor);
+        return ResponseEntity.ok(result);
+    }
+
 
 }

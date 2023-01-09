@@ -14,6 +14,8 @@ public interface ModelFilter {
     List<ModelReadDto> findModelsWithExperience(String experience);
 
     List<ModelReadDto> findModelsWithHairColor(String hairColor);
+
+    List<ModelReadDto> findModelsWithNaturalColor(String naturalColor);
 }
 
 
