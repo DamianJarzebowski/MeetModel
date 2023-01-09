@@ -3,10 +3,20 @@ Feature: Test filter examples
   Background:
     Given Delete all records models
 
-  Scenario: Create a new model who will be correct looking scope of work, try find him and check if will be found.
-    Given Create a new model with looking scope of work.
-    When Try find created model.
-    Then Check if was found.
+  Scenario Outline: Create a new model and check whether you can find it for the work ranges given in the examples.    Given Create a new model with looking scope of work.
+    Given Create a new model from data dateToCreateModel.
+    When Try find created model using data examples from table <Act> <CoveredNudity> <Editorial> <Fashion> <Glamour> <MakeUpAndStylization> <Portrait>
+    Then Check if was found <Found>
+
+    Examples:
+    | Act   | CoveredNudity | Editorial  | Fashion  | Glamour | MakeUpAndStylization  | Portrait |  Found |
+    | false |      false    |    false   |   false  |  true   |        false          |   true   |  true  |
+    | true  |               |    true    |   true   |  true   |        true           |   true   |  false |
+    | false |               |            |   false  |  true   |        false          |   true   |  true  |
+    | true  |      false    |    true    |   true   |  true   |        true           |   true   |  false |
+    |       |               |            |          |         |                       |          |  true  |
+    | true  |      true     |    true    |   true   |  false  |        true           |   false  |  false |
+    | true  |      false    |    false   |   false  |  false  |        true           |   false  |  false |
 
   Scenario Outline: Create multiple models of different ages and try to filter for different age ranges, expecting or not finding a model.
     Given Create a new model with an age <Age>

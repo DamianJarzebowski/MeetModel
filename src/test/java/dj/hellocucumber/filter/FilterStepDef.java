@@ -2,7 +2,6 @@ package dj.hellocucumber.filter;
 
 import dj.models.competition.domain.ScopeOfWork;
 import dj.models.competition.domain.User;
-import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.Model;
 import dj.models.competition.model.dto.ModelReadDto;
 import dj.models.competition.model.dto.ModelWriteDto;
@@ -24,11 +23,11 @@ public class FilterStepDef {
     private static final String baseUri = "http://localhost:8080/api/model";
     private static final String filter = "http://localhost:8080/api/filter";
 
-
     private String modelLocation;
-    private List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
-    private List<ModelReadDto> filteredListAboutAge = new ArrayList<>();
+    private final List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
+    private final List<ModelReadDto> filteredListAboutAge = new ArrayList<>();
 
+    // Please don't change this model data because tests operating about data this model
     private final ModelWriteDto dateToCreateModel = new ModelWriteDto()
             .setUser(new User()
                     .setName("Ala")
@@ -60,36 +59,36 @@ public class FilterStepDef {
                     .setClothesSize(Model.ClothesSize.S)
                     .setFootwear(36));
 
-    @Given("Create a new model with looking scope of work.")
-    public void createANewModelWithLookingScopeOfWork() {
+    @Given("Create a new model from data dateToCreateModel.")
+    public void Create_a_new_model_from_data_dateToCreateModel() {
         modelLocation = create(baseUri, dateToCreateModel, HttpStatus.SC_CREATED);
     }
 
-    @When("Try find created model.")
-    public void tryFindCreatedModel() {
-        ScopeOfWorkDto wanted = new ScopeOfWorkDto()
-                .setGlamour(true)
-                .setPortrait(true);
+    @When("^Try find created model using data examples from table (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void try_find_created_model_using_data_examples(
+            String act, String coveredNudity, String editorial, String fashion,
+            String glamour, String makeUpAndStylization, String portrait) {
 
         var filterItem = RestAssured
                 .given()
+                .pathParam("act", act)
+                .pathParam("coveredNudity", coveredNudity)
+                .pathParam("editorial", editorial)
+                .pathParam("fashion", fashion)
+                .pathParam("glamour", glamour)
+                .pathParam("makeUpAndStylization", makeUpAndStylization)
+                .pathParam("portrait", portrait)
                 .headers("Content-Type", ContentType.JSON)
-                .body(wanted)
-                .get(filter + "/scopeOfWork")
+                .get(filter + "/scopeOfWork" + "?act={act}&coveredNudity={coveredNudity}&editorial={editorial}&fashion={fashion}&glamour={glamour}&makeUpAndStylization={makeUpAndStylization}&portrait={portrait}")
                 .as(new TypeRef<List<ModelReadDto>>() {
                 });
 
         filteredListScopeOfWork.addAll(filterItem);
     }
 
-    @Then("Check if was found.")
-    public void checkIfWasFound() {
-
-        var foundModel = filteredListScopeOfWork.get(0);
-
-        var createdModel = read(modelLocation, ModelReadDto.class, HttpStatus.SC_OK);
-
-        Assertions.assertThat(foundModel.getId()).isEqualTo(createdModel.getId());
+    @Then("^Check if was found (.*)$")
+    public void check_if_was_found(String found) {
+        Assertions.assertThat(expectedResult(found)).isEqualTo(result(filteredListScopeOfWork));
     }
 
     @Given("Create a new model with an age {int}")
@@ -109,7 +108,8 @@ public class FilterStepDef {
                 .pathParam("to", to)
                 .headers("Content-Type", ContentType.JSON)
                 .get(filter + "/age" + "?from={from}&to={to}")
-                .as(new TypeRef<List<ModelReadDto>>() {});
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
 
         filteredListAboutAge.clear();
         filteredListAboutAge.addAll(filterItem);
@@ -117,7 +117,22 @@ public class FilterStepDef {
 
     @Then("Size collected list will be equal {int}")
     public void sizeCollectedListWillBeSize(Integer size) {
-
         Assertions.assertThat(filteredListAboutAge).hasSize(size);
     }
+
+
+
+
+
+
+    // Gherkin sending String "true" or "false" and it will be expected result, just change it at boolean for Assertions
+    private boolean expectedResult(String found) {
+        return found.equals("true");
+    }
+
+    // If model was find, size list is equals 1 and method return true else return false
+    private boolean result(List<ModelReadDto> result) {
+        return result.size() == 1;
+    }
+
 }
