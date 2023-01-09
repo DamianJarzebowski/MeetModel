@@ -1,6 +1,5 @@
 package dj.api;
 
-import dj.models.competition.domain.dto.ScopeOfWorkDto;
 import dj.models.competition.model.ModelFilter;
 import dj.models.competition.model.dto.ModelReadDto;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +16,14 @@ public class ModelFilterController {
     private final ModelFilter modelFilter;
 
     @GetMapping("/scopeOfWork")
-    ResponseEntity<List<ModelReadDto>> filterScopeOfWork(@ModelAttribute ScopeOfWorkDto dto) {
-        var result = modelFilter.findModelsWithScopeOfWork(dto);
+    ResponseEntity<List<ModelReadDto>> filterScopeOfWork(@RequestParam(required = false) Boolean fashion,
+                                                         @RequestParam(required = false) Boolean portrait,
+                                                         @RequestParam(required = false) Boolean glamour,
+                                                         @RequestParam(required = false) Boolean act,
+                                                         @RequestParam(required = false) Boolean editorial,
+                                                         @RequestParam(required = false) Boolean coveredNudity,
+                                                         @RequestParam(required = false) Boolean makeUpAndStylization) {
+        var result = modelFilter.findModelsWithScopeOfWork(fashion, portrait, glamour, act, editorial, coveredNudity, makeUpAndStylization);
         return ResponseEntity.ok(result);
     }
 

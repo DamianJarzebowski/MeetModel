@@ -27,30 +27,10 @@ public class ModelFilterImpl implements ModelFilter {
     private final ScopeOfWorkMapper scopeOfWorkMapper;
 
     @Override
-    public List<ModelReadDto> findModelsWithScopeOfWork(ScopeOfWorkDto dto) {
-        return new ArrayList<>(findAllModelsAndMapToRead())
-                .stream()
-                .filter(model -> filterAboutScopeOfWork(model.getScopeOfWork(), dto))
-                .toList();
-    }
-
-    /**
-     * @return returns true when the object matches the submitted scope of work.
-     */
-    private boolean filterAboutScopeOfWork(ScopeOfWork scopeOfWork, ScopeOfWorkDto dto) {
-        Field[] scopeOfWorkWanted = scopeOfWorkMapper.toEntity(dto).getClass().getDeclaredFields();
-        Field[] scopeOfWorkModel = scopeOfWork.getClass().getDeclaredFields();
-
-        for (int i = 0; i < scopeOfWorkWanted.length; i++) {
-            Field value1 = scopeOfWorkWanted[i];
-            Field value2 = scopeOfWorkModel[i];
-
-            if (value1.equals(value2))
-                continue;
-            else if (value2 != null)
-                return false;
-        }
-        return true;
+    public List<ModelReadDto> findModelsWithScopeOfWork(Boolean fashion, Boolean portrait, Boolean glamour, Boolean act,
+                                                        Boolean editorial, Boolean coveredNudity, Boolean makeUpAndStylization) {
+        var listModels = modelRepository.findByScopeOfWork(fashion, portrait, glamour, act, editorial, coveredNudity, makeUpAndStylization);
+        return modelReadMapper.toDto(listModels);
     }
 
     @Override
@@ -70,11 +50,6 @@ public class ModelFilterImpl implements ModelFilter {
     public List<ModelReadDto> findModelsWithHairColor(String hairColor) {
         var enumName = normalizeNameHairColor(hairColor);
         var listModels = modelRepository.searchModelsWithLookingHairColor(enumName);
-        return modelReadMapper.toDto(listModels);
-    }
-
-    private List<ModelReadDto> findAllModelsAndMapToRead() {
-        var listModels = modelRepository.findAll();
         return modelReadMapper.toDto(listModels);
     }
 

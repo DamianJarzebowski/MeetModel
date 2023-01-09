@@ -11,7 +11,7 @@ import java.util.List;
 public interface ModelRepository extends JpaRepository<Model, Long> {
 
     @Query(value = "SELECT * FROM MODELS m WHERE " +
-    "m.experience = :experience", nativeQuery = true)
+            "m.experience = :experience", nativeQuery = true)
     List<Model> searchModelsWithLookingExperience(String experience);
 
     @Query(value = "SELECT * FROM MODELS m WHERE " +
@@ -25,4 +25,16 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
     @Query(value = "SELECT * FROM MODELS m WHERE " +
             "m.age BETWEEN :from AND :to", nativeQuery = true)
     List<Model> findByAgeBetween(int from, int to);
+
+    @Query(value =
+            "SELECT * FROM MODELS m " +
+            "WHERE (:fashion IS NULL OR m.fashion = :fashion) " +
+            "AND (:portrait IS NULL OR m.portrait = :portrait) " +
+            "AND (:glamour IS NULL OR m.glamour = :glamour) " +
+            "AND (:act IS NULL OR m.act = :act) " +
+            "AND (:editorial IS NULL OR m.editorial = :editorial) " +
+            "AND (:coveredNudity IS NULL OR m.covered_nudity = :coveredNudity) " +
+            "AND (:makeUpAndStylization IS NULL OR m.make_up_and_stylization = :makeUpAndStylization)", nativeQuery = true)
+    List<Model> findByScopeOfWork(Boolean fashion, Boolean portrait, Boolean glamour, Boolean act,
+                                  Boolean editorial, Boolean coveredNudity, Boolean makeUpAndStylization);
 }
