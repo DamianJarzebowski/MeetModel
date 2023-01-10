@@ -16,6 +16,14 @@ public interface ModelFilter {
     List<ModelReadDto> findModelsWithHairColor(String hairColor);
 
     List<ModelReadDto> findModelsWithNaturalColor(String naturalColor);
+
+    List<ModelReadDto> findModelsWithHairLength(String hairLength);
+
+    List<ModelReadDto> findModelsWithLookingSizes(Integer growthFrom, Integer growthTo,
+                                                  Integer weightFrom, Integer weightTo,
+                                                  Integer bustFrom, Integer bustTo,
+                                                  Integer waistFrom, Integer waistTo,
+                                                  Integer hipsFrom, Integer hipsTo);
 }
 
 

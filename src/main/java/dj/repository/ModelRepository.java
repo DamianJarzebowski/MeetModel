@@ -15,12 +15,12 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
     List<Model> searchModelsWithLookingExperience(String experience);
 
     @Query(value = "SELECT * FROM MODELS m WHERE " +
-            "m.hair_color = :query", nativeQuery = true)
-    List<Model> searchModelsWithLookingHairColor(String query);
+            "m.hair_color = :hairColor", nativeQuery = true)
+    List<Model> searchModelsWithLookingHairColor(String hairColor);
 
     @Query(value = "SELECT * FROM MODELS m WHERE " +
-            "m.natural_color = :query", nativeQuery = true)
-    List<Model> searchModelsWithLookingNaturalColor(String query);
+            "m.natural_color = :naturalColor", nativeQuery = true)
+    List<Model> searchModelsWithLookingNaturalColor(String naturalColor);
 
     @Query(value = "SELECT * FROM MODELS m WHERE " +
             "m.age BETWEEN :from AND :to", nativeQuery = true)
@@ -37,4 +37,22 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
             "AND (:makeUpAndStylization IS NULL OR m.make_up_and_stylization = :makeUpAndStylization)", nativeQuery = true)
     List<Model> findByScopeOfWork(Boolean fashion, Boolean portrait, Boolean glamour, Boolean act,
                                   Boolean editorial, Boolean coveredNudity, Boolean makeUpAndStylization);
+
+    @Query(value =
+    "SELECT * FROM MODELS m " +
+    "WHERE m.hair = :hairLength", nativeQuery = true)
+    List<Model> searchModelsWithLookingHairLength(String hairLength);
+
+    @Query(value =
+            "SELECT * FROM MODELS m " +
+            "WHERE (m.growth BETWEEN :growthFrom AND :growthTo) " +
+            "AND (m.weight BETWEEN :weightFrom AND :weightTo) " +
+            "AND (m.bust BETWEEN :bustFrom AND :bustTo) " +
+            "AND (m.waist BETWEEN :waistFrom AND :waistTo) " +
+            "AND (m.hips BETWEEN :hipsFrom AND :hipsTo)" , nativeQuery = true)
+    List<Model> searchModelsWithLookingSize(int growthFrom, int growthTo,
+                                            int weightFrom, int weightTo,
+                                            int bustFrom, int bustTo,
+                                            int waistFrom, int waistTo,
+                                            int hipsFrom, int hipsTo);
 }

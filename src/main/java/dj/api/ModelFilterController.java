@@ -52,5 +52,26 @@ public class ModelFilterController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/hairLength")
+    ResponseEntity<List<ModelReadDto>> filterHairLength(@RequestParam String hairLength) {
+        var result = modelFilter.findModelsWithHairLength(hairLength);
+        return ResponseEntity.ok(result);
+    }
+
+    // Normalize param
+    // Growth 140-200, Weight 35-110, Bust 75-120, Waist 55-95, Hips 80-120
+    @GetMapping("/size")
+    ResponseEntity<List<ModelReadDto>> filterSize(@RequestParam(required = false) Integer growthFrom, @RequestParam(required = false) Integer growthTo,
+                                                  @RequestParam(required = false) Integer weightFrom, @RequestParam(required = false) Integer weightTo,
+                                                  @RequestParam(required = false) Integer bustFrom, @RequestParam(required = false) Integer bustTo,
+                                                  @RequestParam(required = false) Integer waistFrom, @RequestParam(required = false) Integer waistTo,
+                                                  @RequestParam(required = false) Integer hipsFrom, @RequestParam(required = false) Integer hipsTo) {
+        var result = modelFilter.findModelsWithLookingSizes(growthFrom, growthTo,
+                                                            weightFrom, weightTo,
+                                                            bustFrom, bustTo,
+                                                            waistFrom, waistTo,
+                                                            hipsFrom, hipsTo);
+        return ResponseEntity.ok(result);
+    }
 
 }
