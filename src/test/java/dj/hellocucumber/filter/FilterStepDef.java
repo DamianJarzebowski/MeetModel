@@ -140,6 +140,21 @@ public class FilterStepDef {
         Assertions.assertThat(expectedResult(expected)).isEqualTo(result(listModels));
     }
 
+    @When("^Try find created model using data examples hair color: (.*)$")
+    public void tryFindCreatedModelUsingDataExamplesHairColorHAIR_COLOR(String hairColor) {
+
+        var filterItem = RestAssured
+                .given()
+                .pathParam("hairColor", hairColor)
+                .headers("Content-Type", ContentType.JSON)
+                .get(filter + "/hairColor" + "?hairColor={hairColor}")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
+
+        listModels.clear();
+        listModels.addAll(filterItem);
+    }
+
 
 
 
@@ -152,6 +167,5 @@ public class FilterStepDef {
     private boolean result(List<ModelReadDto> result) {
         return result.size() == 1;
     }
-
 
 }
