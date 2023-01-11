@@ -24,8 +24,7 @@ public class FilterStepDef {
     private static final String filter = "http://localhost:8080/api/filter";
 
     private String modelLocation;
-    private final List<ModelReadDto> filteredListScopeOfWork = new ArrayList<>();
-    private final List<ModelReadDto> filteredListAboutAge = new ArrayList<>();
+    private final List<ModelReadDto> listModels = new ArrayList<>();
 
     // Please don't change this model data because tests operating about data this model
     private final ModelWriteDto dateToCreateModel = new ModelWriteDto()
@@ -83,12 +82,12 @@ public class FilterStepDef {
                 .as(new TypeRef<List<ModelReadDto>>() {
                 });
 
-        filteredListScopeOfWork.addAll(filterItem);
+        listModels.addAll(filterItem);
     }
 
     @Then("^Check if was found (.*)$")
     public void check_if_was_found(String found) {
-        Assertions.assertThat(expectedResult(found)).isEqualTo(result(filteredListScopeOfWork));
+        Assertions.assertThat(expectedResult(found)).isEqualTo(result(listModels));
     }
 
     @Given("Create a new model with an age {int}")
@@ -111,28 +110,48 @@ public class FilterStepDef {
                 .as(new TypeRef<List<ModelReadDto>>() {
                 });
 
-        filteredListAboutAge.clear();
-        filteredListAboutAge.addAll(filterItem);
+        listModels.clear();
+        listModels.addAll(filterItem);
     }
 
     @Then("Size collected list will be equal {int}")
     public void sizeCollectedListWillBeSize(Integer size) {
-        Assertions.assertThat(filteredListAboutAge).hasSize(size);
+        Assertions.assertThat(listModels).hasSize(size);
     }
 
 
+    @When("^Try find created model using data examples experience: (.*)$")
+    public void tryFindCreatedModelUsingDataExamplesExperienceExperience(String experience) {
+
+        var filterItem = RestAssured
+                .given()
+                .pathParam("experience", experience)
+                .headers("Content-Type", ContentType.JSON)
+                .get(filter + "/experience" + "?experience={experience}")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
+
+        listModels.clear();
+        listModels.addAll(filterItem);
+    }
+
+    @Then("^Check if result looking is as expected: (.*)$")
+    public void checkIfResultLookingIsAsExpectedExpected(String expected) {
+        Assertions.assertThat(expectedResult(expected)).isEqualTo(result(listModels));
+    }
 
 
 
 
     // Gherkin sending String "true" or "false" and it will be expected result, just change it at boolean for Assertions
-    private boolean expectedResult(String found) {
-        return found.equals("true");
+    private boolean expectedResult(String expected) {
+        return expected.equals("true");
     }
 
     // If model was find, size list is equals 1 and method return true else return false
     private boolean result(List<ModelReadDto> result) {
         return result.size() == 1;
     }
+
 
 }
