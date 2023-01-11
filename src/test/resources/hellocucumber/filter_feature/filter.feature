@@ -60,3 +60,21 @@ Feature: Test filter examples
       | DARK_BLONDE | false    |
       | RED         | false    |
       | DIFFERENT   | false    |
+      
+      Scenario Outline: Create a new model using dataToCreateModel and check whether you can find him if you use examples data from table.
+        Given Create a new model from data dateToCreateModel.
+        When Try find created model using data examples natural color: <NATURAL_COLOR>
+        Then Check if result looking is as expected: <Expected>
+
+        Examples:
+
+          | NATURAL_COLOR  | Expected |
+          | BROWN          | false    |
+          | LIGHT_BLOND    | true     |
+          | BLACK          | false    |
+          | WHITE          | false    |
+          | DARK_BLONDE    | false    |
+          | RED            | false    |
+          | DIFFERENT      | false    |
+
+

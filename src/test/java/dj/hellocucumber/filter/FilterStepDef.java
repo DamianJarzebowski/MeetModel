@@ -155,6 +155,21 @@ public class FilterStepDef {
         listModels.addAll(filterItem);
     }
 
+    @When("^Try find created model using data examples natural color: (.*)$")
+    public void tryFindCreatedModelUsingDataExamplesNaturalColorNATURAL_COLOR(String naturalColor) {
+
+        var filterItem = RestAssured
+                .given()
+                .pathParam("naturalColor", naturalColor)
+                .headers("Content-Type", ContentType.JSON)
+                .get(filter + "/naturalColor" + "?naturalColor={naturalColor}")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
+
+        listModels.clear();
+        listModels.addAll(filterItem);
+    }
+
 
 
 
@@ -167,5 +182,6 @@ public class FilterStepDef {
     private boolean result(List<ModelReadDto> result) {
         return result.size() == 1;
     }
+
 
 }
