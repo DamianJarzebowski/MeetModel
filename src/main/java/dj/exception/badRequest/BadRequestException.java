@@ -4,7 +4,7 @@ import dj.exception.ErrorMessage;
 
 public class BadRequestException extends RuntimeException {
 
-    private ErrorMessage errorMessage;
+    private final ErrorMessage errorMessage;
 
     public BadRequestException(ErrorMessage errorMessage) {
         this.errorMessage = errorMessage;
