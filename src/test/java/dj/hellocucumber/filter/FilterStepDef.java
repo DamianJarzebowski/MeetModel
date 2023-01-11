@@ -170,6 +170,21 @@ public class FilterStepDef {
         listModels.addAll(filterItem);
     }
 
+    @When("^Try find created model using data examples hair: (.*)$")
+    public void tryFindCreatedModelUsingDataExamplesHairHAIR(String hair) {
+
+        var filterItem = RestAssured
+                .given()
+                .pathParam("hair", hair)
+                .headers("Content-Type", ContentType.JSON)
+                .get(filter + "/hairLength" + "?hairLength={hair}")
+                .as(new TypeRef<List<ModelReadDto>>() {
+                });
+
+        listModels.clear();
+        listModels.addAll(filterItem);
+    }
+
 
 
 

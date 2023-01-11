@@ -77,4 +77,17 @@ Feature: Test filter examples
           | RED            | false    |
           | DIFFERENT      | false    |
 
+        Scenario Outline: Create a new model using dataToCreateModel and check whether you can find him if you use examples data from table.
+          Given Create a new model from data dateToCreateModel.
+          When Try find created model using data examples hair: <HAIR>
+          Then Check if result looking is as expected: <Expected>
+
+          Examples:
+
+            | HAIR       | Expected |
+            | LONG       | false    |
+            | SHORT      | true     |
+            | VERY_LONG  | false    |
+
+
 
