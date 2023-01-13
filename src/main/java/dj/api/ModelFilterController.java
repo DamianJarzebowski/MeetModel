@@ -67,10 +67,10 @@ public class ModelFilterController {
                                                   @RequestParam(required = false) Integer waistFrom, @RequestParam(required = false) Integer waistTo,
                                                   @RequestParam(required = false) Integer hipsFrom, @RequestParam(required = false) Integer hipsTo) {
         var result = modelFilter.findModelsWithLookingSizes(growthFrom, growthTo,
-                                                            weightFrom, weightTo,
-                                                            bustFrom, bustTo,
-                                                            waistFrom, waistTo,
-                                                            hipsFrom, hipsTo);
+                                                                             weightFrom, weightTo,
+                                                                             bustFrom, bustTo,
+                                                                             waistFrom, waistTo,
+                                                                             hipsFrom, hipsTo);
         return ResponseEntity.ok(result);
     }
 

@@ -188,6 +188,8 @@ public class FilterStepDef {
 
 
 
+
+
     // Gherkin sending String "true" or "false" and it will be expected result, just change it at boolean for Assertions
     private boolean expectedResult(String expected) {
         return expected.equals("true");
